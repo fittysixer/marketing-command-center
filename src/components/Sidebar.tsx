@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { X, Home, BarChart3, DollarSign, Users, Settings, Shield, Truck, Wrench, GraduationCap, Globe, Leaf, Brain, Building2, Scale, MessageSquare, Heart, ChefHat } from 'lucide-react'
+import { X, Home, BarChart3, DollarSign, Users, Settings, Shield, Truck, Wrench, GraduationCap, Globe, Leaf, Brain, Building2, Scale, MessageSquare, Heart, ChefHat, Star } from 'lucide-react'
 
 const departments = [
   { name: 'Operations', icon: Settings },
@@ -19,13 +19,13 @@ const departments = [
   { name: 'Data Science & AI', icon: Brain },
 ]
 
-const storeDashboards = [
-  { name: 'Food Safety', active: false },
-  { name: 'LMS', active: false },
-  { name: 'Sales & Revenue', soon: true },
-  { name: 'Labor & Scheduling', soon: true },
-  { name: 'Marketing & Shopper', soon: true },
-  { name: 'Guest Experience', soon: true },
+const storeDashboards: { name: string; icon: any; active?: boolean; soon?: boolean; href?: string }[] = [
+  { name: 'Food Safety', icon: Shield, href: 'https://fsagent-modular.vercel.app/' },
+  { name: 'LMS', icon: GraduationCap, href: '#' },
+  { name: 'Sales & Revenue', icon: DollarSign, soon: true },
+  { name: 'Labor & Scheduling', icon: Users, soon: true },
+  { name: 'Marketing & Shopper', icon: MessageSquare, active: true },
+  { name: 'Guest Experience', icon: Star, soon: true },
 ]
 
 export function HamburgerMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -51,16 +51,29 @@ export function HamburgerMenu({ open, onClose }: { open: boolean; onClose: () =>
           </button>
         </div>
 
-        {/* Store Dashboards */}
+        {/* Store Dashboards — matches Brand Hub sidebar exactly */}
         <div className="px-4 pt-4 pb-2">
-          <h3 className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: '#7a7a80' }}>Store Dashboards</h3>
+          <h3 className="text-[10px] font-bold uppercase tracking-widest mb-3" style={{ color: '#7a7a80', letterSpacing: '2px' }}>Store Dashboards</h3>
           <div className="space-y-0.5">
-            {storeDashboards.map((d) => (
-              <a key={d.name} href={d.name === 'Food Safety' ? 'https://fsagent-modular.vercel.app/' : '#'} className="flex items-center justify-between px-3 py-2 rounded-md text-xs transition-colors hover:bg-white/5" style={{ color: d.active ? '#c8102e' : '#a0a0a4' }}>
-                <span>{d.name}</span>
-                {d.soon && <span className="text-[9px] px-1.5 py-0.5 rounded font-semibold" style={{ background: '#232326', color: '#7a7a80' }}>SOON</span>}
-              </a>
-            ))}
+            {storeDashboards.map((d) => {
+              const Icon = d.icon
+              return (
+                <a
+                  key={d.name}
+                  href={d.href || '#'}
+                  className="flex items-center gap-3 px-3 py-2.5 rounded-md text-[13px] transition-colors hover:bg-white/5"
+                  style={{
+                    color: d.active ? '#fff' : d.soon ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.7)',
+                    background: d.active ? 'rgba(200, 16, 46, 0.25)' : 'transparent',
+                    fontWeight: d.active ? 600 : 400,
+                  }}
+                >
+                  <Icon size={16} style={{ color: d.active ? '#c8102e' : d.soon ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.5)' }} />
+                  <span className="flex-1">{d.name}</span>
+                  {d.soon && <span className="text-[9px] px-2 py-0.5 rounded font-semibold" style={{ border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.35)' }}>SOON</span>}
+                </a>
+              )
+            })}
           </div>
         </div>
 
