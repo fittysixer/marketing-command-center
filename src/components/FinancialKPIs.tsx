@@ -73,8 +73,8 @@ export function FinancialKPIs({ compact = false }: { compact?: boolean }) {
       <Card className="p-4">
         <div className="flex items-center gap-2 mb-3">
           <DollarSign size={15} style={{ color: '#c8102e' }} />
-          <h3 className="text-sm font-semibold" style={{ color: '#f0f0f5' }}>Financial Snapshot</h3>
-          <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold ml-auto" style={{ background: 'rgba(239, 68, 68, 0.15)', color: '#ef4444' }}>KnowledgeForce Can't Do This</span>
+          <h3 className="text-sm font-semibold" style={{ color: '#f0f0f5' }}>Marketing Financial Snapshot</h3>
+          <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold ml-auto" style={{ background: 'rgba(200, 16, 46, 0.15)', color: '#c8102e' }}>Marketing ROI</span>
         </div>
         <div className="grid grid-cols-2 gap-3">
           <div>
@@ -83,9 +83,9 @@ export function FinancialKPIs({ compact = false }: { compact?: boolean }) {
             <div className="flex items-center gap-0.5 text-emerald-600 text-[11px] font-semibold"><TrendingUp size={10} /> +{revChange.toFixed(1)}%</div>
           </div>
           <div>
-            <div className="text-[10px] uppercase tracking-wider" style={{ color: '#7a7a80' }}>Prime Cost</div>
-            <div className="text-lg font-bold" style={{ color: '#f0f0f5' }}>{d.primeCoost.current}%</div>
-            <div className="text-[11px]" style={{ color: '#7a7a80' }}>Target: {d.primeCoost.target}% | Industry: {d.primeCoost.industry}%</div>
+            <div className="text-[10px] uppercase tracking-wider" style={{ color: '#7a7a80' }}>ROI (30d avg)</div>
+            <div className="text-lg font-bold" style={{ color: '#f0f0f5' }}>5.83x</div>
+            <div className="text-[11px]" style={{ color: '#7a7a80' }}>vs. $487K spend</div>
           </div>
         </div>
       </Card>
@@ -153,74 +153,89 @@ export function FinancialKPIs({ compact = false }: { compact?: boolean }) {
         </ResponsiveContainer>
       </Card>
 
-      {/* Cost gauges */}
+      {/* Marketing ROI Metrics */}
       <Card className="p-4">
-        <h3 className="text-sm font-semibold mb-4" style={{ color: '#f0f0f5' }}>Cost Control — AI Anomaly Detection Active</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <CostGauge label="Food Cost" current={d.foodCost.current} target={d.foodCost.target} industry={d.foodCost.industry} color="#f59e0b" />
-          <CostGauge label="Labor Cost" current={d.laborCost.current} target={d.laborCost.target} industry={d.laborCost.industry} color="#3b82f6" />
-          <CostGauge label="Prime Cost" current={d.primeCoost.current} target={d.primeCoost.target} industry={d.primeCoost.industry} color="#8b5cf6" />
-        </div>
-        <div className="mt-4 p-3 rounded-md border" style={{ background: 'rgba(245, 158, 11, 0.08)', borderColor: 'rgba(245, 158, 11, 0.2)' }}>
-          <div className="flex items-center gap-1.5 text-xs font-semibold" style={{ color: '#f59e0b' }}>
-            <AlertCircle size={13} /> AI Alert: Labor cost trending 1.2pts above target
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="text-sm font-semibold" style={{ color: '#f0f0f5' }}>Marketing ROI Metrics</h3>
+            <p className="text-[11px]" style={{ color: '#7a7a80' }}>Campaign spend vs. attributed revenue — connected end-to-end</p>
           </div>
-          <p className="text-[11px] mt-0.5" style={{ color: '#f59e0b' }}>Store #106 (Interstate) is driving 40% of the overage. Recommend schedule optimization review.</p>
+          <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold" style={{ background: 'rgba(200, 16, 46, 0.15)', color: '#c8102e' }}>Marketing Intelligence</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="p-3 rounded-lg" style={{ background: '#232326' }}>
+            <div className="text-[10px] uppercase tracking-wider" style={{ color: '#7a7a80' }}>Campaign Spend (30d)</div>
+            <div className="text-xl font-bold mt-2" style={{ color: '#f0f0f5' }}>$487K</div>
+            <div className="text-[11px] mt-1" style={{ color: '#10b981' }}>↑ 12% vs. prior period</div>
+          </div>
+          <div className="p-3 rounded-lg" style={{ background: '#232326' }}>
+            <div className="text-[10px] uppercase tracking-wider" style={{ color: '#7a7a80' }}>Attributed Revenue</div>
+            <div className="text-xl font-bold mt-2" style={{ color: '#f0f0f5' }}>$2.84M</div>
+            <div className="text-[11px] mt-1" style={{ color: '#10b981' }}>5.83x return on spend</div>
+          </div>
+          <div className="p-3 rounded-lg" style={{ background: '#232326' }}>
+            <div className="text-[10px] uppercase tracking-wider" style={{ color: '#7a7a80' }}>Cost Per Acquisition</div>
+            <div className="text-xl font-bold mt-2" style={{ color: '#f0f0f5' }}>$18.50</div>
+            <div className="text-[11px] mt-1" style={{ color: '#10b981' }}>↓ 8% from target</div>
+          </div>
+        </div>
+        <div className="mt-4 p-3 rounded-md border" style={{ background: 'rgba(16, 185, 129, 0.08)', borderColor: 'rgba(16, 185, 129, 0.2)' }}>
+          <div className="flex items-center gap-1.5 text-xs font-semibold" style={{ color: '#10b981' }}>
+            <AlertCircle size={13} /> Loyalty Program ROI: 7.2x (highest performer)
+          </div>
+          <p className="text-[11px] mt-0.5" style={{ color: '#10b981' }}>Digital channel showing 23% lift in repeat purchase rate from targeted campaigns</p>
         </div>
       </Card>
 
-      {/* P&L Statement */}
-      <Card className="overflow-hidden">
-        <div className="px-4 py-3" style={{ borderBottom: '1px solid #2a2a2e' }}>
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-sm font-semibold" style={{ color: '#f0f0f5' }}>Profit & Loss Statement</h3>
-              <p className="text-[11px] mt-0.5" style={{ color: '#7a7a80' }}>{profitAndLoss.period} — AI-generated variance analysis</p>
+      {/* Revenue Attribution by Channel */}
+      <Card className="p-4">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="text-sm font-semibold" style={{ color: '#f0f0f5' }}>Revenue Attribution by Channel</h3>
+            <p className="text-[11px]" style={{ color: '#7a7a80' }}>Which marketing channels drive the most revenue?</p>
+          </div>
+          <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold" style={{ background: 'rgba(200, 16, 46, 0.15)', color: '#c8102e' }}>KnowledgeForce Can't Do This</span>
+        </div>
+        <div className="space-y-3">
+          {[
+            { name: 'In-Store (Foot Traffic)', revenue: 38, color: '#f59e0b', attributed: '$1.08M' },
+            { name: 'Delivery & Online Orders', revenue: 28, color: '#3b82f6', attributed: '$794K' },
+            { name: 'Digital & Social Campaigns', revenue: 20, color: '#c8102e', attributed: '$568K' },
+            { name: 'Catering & B2B', revenue: 14, color: '#8b5cf6', attributed: '$397K' }
+          ].map((channel) => (
+            <div key={channel.name}>
+              <div className="flex justify-between items-baseline mb-1">
+                <span className="text-xs font-medium" style={{ color: '#a0a0a4' }}>{channel.name}</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-mono" style={{ color: '#f0f0f5' }}>{channel.revenue}%</span>
+                  <span className="text-xs font-mono" style={{ color: '#7a7a80' }}>{channel.attributed}</span>
+                </div>
+              </div>
+              <div className="h-2.5 rounded-full overflow-hidden" style={{ background: '#232326' }}>
+                <div className="h-full rounded-full" style={{ width: `${channel.revenue}%`, background: channel.color }} />
+              </div>
             </div>
-            <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold" style={{ background: 'rgba(239, 68, 68, 0.15)', color: '#ef4444' }}>KnowledgeForce Can't Do This</span>
+          ))}
+        </div>
+        <div className="mt-4 pt-4" style={{ borderTop: '1px solid #2a2a2e' }}>
+          <div className="text-[11px]" style={{ color: '#7a7a80' }}>
+            <strong style={{ color: '#f0f0f5' }}>Strategic Insight:</strong> Digital campaigns are 34% more efficient per dollar than foot traffic. Recommend 15% budget shift to social and influencer partnerships.
           </div>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs">
-            <thead>
-              <tr style={{ background: '#262628', color: '#7a7a80' }}>
-                <th className="px-4 py-2 text-left font-medium">Category</th>
-                <th className="px-4 py-2 text-right font-medium">Actual</th>
-                <th className="px-4 py-2 text-right font-medium">Budget</th>
-                <th className="px-4 py-2 text-right font-medium">Variance</th>
-                <th className="px-4 py-2 text-right font-medium">Prior Year</th>
-                <th className="px-4 py-2 text-right font-medium">% of Sales</th>
-              </tr>
-            </thead>
-            <tbody>
-              {profitAndLoss.lines.map((line) => {
-                const variance = line.amount - line.budget;
-                const isRevenue = line.category === 'Net Sales';
-                const isSummary = line.category === 'EBITDA' || line.category === 'Net Operating Income';
-                const positiveVariance = isRevenue || isSummary ? variance > 0 : variance < 0;
-                return (
-                  <tr key={line.category} style={{ borderTop: '1px solid #262628', background: isSummary ? '#262628' : 'transparent' }}>
-                    <td className="px-4 py-2.5" style={{ color: isRevenue || isSummary ? '#f0f0f5' : '#a0a0a4', fontWeight: isRevenue || isSummary ? 600 : 400 }}>{line.category}</td>
-                    <td className="px-4 py-2.5 text-right font-mono" style={{ color: '#f0f0f5', fontWeight: isSummary ? 600 : 400 }}>
-                      {line.amount < 0 ? '-' : ''}${Math.abs(line.amount).toLocaleString()}
-                    </td>
-                    <td className="px-4 py-2.5 text-right font-mono" style={{ color: '#7a7a80' }}>
-                      {line.budget < 0 ? '-' : ''}${Math.abs(line.budget).toLocaleString()}
-                    </td>
-                    <td className="px-4 py-2.5 text-right font-mono" style={{ color: positiveVariance ? '#10b981' : '#ef4444', fontWeight: 600 }}>
-                      {variance > 0 ? '+' : ''}{variance < 0 ? '-' : ''}${Math.abs(variance).toLocaleString()}
-                    </td>
-                    <td className="px-4 py-2.5 text-right font-mono" style={{ color: '#7a7a80' }}>
-                      {line.priorYear < 0 ? '-' : ''}${Math.abs(line.priorYear).toLocaleString()}
-                    </td>
-                    <td className="px-4 py-2.5 text-right" style={{ color: '#a0a0a4' }}>
-                      {line.pctSales ? `${line.pctSales}%` : '100%'}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+      </Card>
+
+      {/* AI Insight: KnowledgeForce Gap */}
+      <Card className="p-4" style={{ background: 'linear-gradient(135deg, #232326 0%, #1e1e22 100%)', border: '1px solid #c8102e' }}>
+        <div className="flex items-start gap-3">
+          <div className="flex-shrink-0 mt-0.5">
+            <span className="text-2xl" style={{ color: '#c8102e' }}>⚡</span>
+          </div>
+          <div className="flex-grow">
+            <h3 className="text-sm font-semibold" style={{ color: '#f0f0f5' }}>Why KnowledgeForce Has Zero Financial Intelligence</h3>
+            <p className="text-xs mt-1" style={{ color: '#a0a0a4' }}>
+              Every metric on this page — ROI tracking, channel attribution, cost per acquisition, loyalty program performance — are IMPOSSIBLE in KnowledgeForce. They can't connect your marketing spend to actual revenue outcomes. They show you cost controls. We show you impact. We prove marketing ROI.
+            </p>
+          </div>
         </div>
       </Card>
 

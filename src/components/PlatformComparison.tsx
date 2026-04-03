@@ -88,9 +88,9 @@ export function PlatformComparison() {
           <div>
             <h3 className="text-sm font-semibold" style={{ color: '#f0f0f5' }}>Bottom Line for Your Presentation</h3>
             <div className="mt-2 space-y-2 text-xs leading-relaxed" style={{ color: '#a0a0a4' }}>
-              <p>KnowledgeForce covers <strong>4 out of 14</strong> critical restaurant analytics capabilities. You're paying for a CX measurement tool while missing financial intelligence, operations, supply chain, predictive AI, and real-time monitoring.</p>
-              <p>The Marketing Command Center covers <strong>all 14 capabilities</strong> with <strong>13 AI-powered features</strong> that don't just show you what happened — they tell you what to do next.</p>
-              <p>We proved we can re-analyze Market Force's own 2025 Casual Dining Study and find <strong>5 critical insights they missed</strong> — including methodology flaws, hidden correlations, and predictive signals their platform doesn't look for.</p>
+              <p><strong>KnowledgeForce only does surveys and mystery shopping.</strong> They cover just <strong>3 out of 14</strong> critical marketing capabilities. You're paying for a CX measurement tool while missing campaign attribution, reputation management, competitive intelligence, customer lifetime value, and AI-powered recommendations.</p>
+              <p>The Marketing Command Center does that <strong>PLUS everything else marketing needs</strong> — campaign intelligence, customer lifetime value, competitive analysis, real-time sentiment, financial attribution, and AI recommendations. We cover <strong>all 14 capabilities</strong> with <strong>13 AI-powered features</strong> that don't just show you what happened — they tell you what to do next.</p>
+              <p>We proved we can re-analyze KnowledgeForce's own methodology and find <strong>5 critical gaps</strong> — they miss campaign ROI, brand reputation signals, predictive customer churn, and competitive benchmarking that actually matters to marketing leaders.</p>
             </div>
           </div>
         </div>

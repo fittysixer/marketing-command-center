@@ -9,9 +9,9 @@ const insights = [
     icon: <AlertTriangle size={14} className="text-red-500" />,
     priority: 'P0',
     prColor: { bg: 'rgba(239, 68, 68, 0.15)', color: '#ef4444' },
-    title: 'Store #106 requires immediate intervention',
-    detail: 'Prime cost 65.7%, NPS 28, mystery shop 71. All metrics trending wrong. Estimated monthly profit loss: $18K vs. system average.',
-    action: 'Schedule GM performance review + deploy operations training team',
+    title: 'Brand reputation at risk: Store #106 NPS dropped to 28',
+    detail: 'Google rating fell to 3.6 stars — negative review velocity up 340% in 30 days. AI detects correlation with mystery shop decline. Without intervention, projected to lose 2,400 annual guests worth $45K revenue.',
+    action: 'Launch reputation recovery campaign + deploy reputation management task force',
   },
   {
     icon: <TrendingUp size={14} className="text-emerald-500" />,

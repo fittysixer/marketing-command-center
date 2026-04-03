@@ -148,18 +148,18 @@ export const operationsData = {
 export const platformComparison = [
   { feature: "Guest Surveys & CSAT", knowledgeForce: true, ourPlatform: true, aiPowered: true, advantage: "AI sentiment analysis extracts 10x more insight from open-text responses" },
   { feature: "Mystery Shopping", knowledgeForce: true, ourPlatform: true, aiPowered: true, advantage: "AI pattern detection across shops identifies systemic issues, not just individual failures" },
-  { feature: "Social Media Monitoring", knowledgeForce: true, ourPlatform: true, aiPowered: true, advantage: "Real-time NLP processing vs. batch reporting; predictive crisis detection" },
-  { feature: "Contact Center Integration", knowledgeForce: true, ourPlatform: true, aiPowered: true, advantage: "Voice analytics + automatic categorization + sentiment scoring" },
-  { feature: "Financial P&L Analytics", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "Store-level P&L with AI anomaly detection — KnowledgeForce has zero financial capability" },
-  { feature: "Labor & Workforce Analytics", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "Predictive scheduling, overtime alerts, productivity scoring" },
-  { feature: "Supply Chain & Food Cost", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "Vendor scorecards, waste prediction, auto-order suggestions" },
-  { feature: "Speed of Service Tracking", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "Real-time ticket time monitoring from POS integration" },
-  { feature: "Predictive Sales Forecasting", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "ML models using weather, events, and historical patterns" },
-  { feature: "AI-Powered Recommendations", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "Every dashboard tells you what to DO, not just what happened" },
-  { feature: "Customer Lifetime Value", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "Predictive CLV, churn risk scoring, personalized retention triggers" },
-  { feature: "Competitive Intelligence", knowledgeForce: "partial", ourPlatform: true, aiPowered: true, advantage: "Real-time competitive monitoring vs. annual benchmark studies" },
-  { feature: "Multi-Unit Portfolio View", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "Heat maps, store rankings, cross-location pattern detection" },
-  { feature: "Real-Time Dashboards", knowledgeForce: false, ourPlatform: true, aiPowered: false, advantage: "Live data streaming vs. static report refreshes" },
+  { feature: "Marketing Campaign Attribution", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "Multi-touch attribution, spend-to-revenue tracking, A/B test analysis — KnowledgeForce can't connect spend to revenue" },
+  { feature: "Brand Reputation Management", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "Review response automation, social listening, crisis detection, competitive brand monitoring" },
+  { feature: "Guest Experience Optimization", knowledgeForce: "partial", ourPlatform: true, aiPowered: true, advantage: "Real-time CSAT + service speed impact on reviews + AI experience scoring" },
+  { feature: "Customer Lifetime Value & Segmentation", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "Predictive CLV, churn risk scoring, behavioral segmentation, personalized retention triggers" },
+  { feature: "Predictive Sales Forecasting", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "ML models using weather, events, daypart patterns, and historical trends" },
+  { feature: "Competitive Intelligence Monitoring", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "Real-time competitive analysis vs. annual benchmarks — track pricing, promotions, customer sentiment" },
+  { feature: "Real-Time Sentiment & Social Analytics", knowledgeForce: true, ourPlatform: true, aiPowered: true, advantage: "Live NLP processing, predictive crisis detection, competitor social tracking vs. batch reporting" },
+  { feature: "Geo-Targeting & Local Campaign Intelligence", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "Geo-fence performance tracking, conquest campaign ROI, local competitive analysis by location" },
+  { feature: "Voice of Customer Integration", knowledgeForce: true, ourPlatform: true, aiPowered: true, advantage: "Unified contact center analytics + survey + review data with AI theme extraction and trend prediction" },
+  { feature: "Marketing Performance Dashboard", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "Campaign ROI, channel performance, conversion funnel analysis, AI-driven optimization recommendations" },
+  { feature: "Customer Acquisition & Loyalty Metrics", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "New vs. repeat visitor tracking, loyalty program performance, member lifetime value, redemption patterns" },
+  { feature: "AI-Powered Actionable Recommendations", knowledgeForce: false, ourPlatform: true, aiPowered: true, advantage: "Every dashboard tells you what to DO next — not just what happened" },
 ];
 
 // Profit & Loss statement for Five Guys
@@ -229,16 +229,16 @@ export const customerSegments = {
 
 // Expanded store data with 10 stores
 export const storeRankings = [
-  { id: 101, name: 'Downtown', revenue: 420_000, foodCost: 27.8, laborCost: 30.1, nps: 48, mysteryShop: 92, ticketTime: 11.2, guestCount: 22_400, compSales: 12.1, status: 'top', aiRank: 1 },
-  { id: 104, name: 'University', revenue: 365_000, foodCost: 28.1, laborCost: 29.8, nps: 51, mysteryShop: 90, ticketTime: 11.8, guestCount: 19_500, compSales: 9.8, status: 'top', aiRank: 2 },
-  { id: 102, name: 'Airport Rd', revenue: 385_000, foodCost: 29.2, laborCost: 31.8, nps: 44, mysteryShop: 88, ticketTime: 12.1, guestCount: 20_500, compSales: 7.4, status: 'good', aiRank: 3 },
-  { id: 107, name: 'Riverside', revenue: 355_000, foodCost: 28.5, laborCost: 30.4, nps: 43, mysteryShop: 86, ticketTime: 12.5, guestCount: 18_900, compSales: 6.2, status: 'good', aiRank: 4 },
-  { id: 105, name: 'Suburbs', revenue: 340_000, foodCost: 28.9, laborCost: 31.0, nps: 40, mysteryShop: 84, ticketTime: 12.8, guestCount: 18_100, compSales: 4.8, status: 'good', aiRank: 5 },
-  { id: 108, name: 'Tech Park', revenue: 330_000, foodCost: 29.4, laborCost: 31.5, nps: 39, mysteryShop: 82, ticketTime: 13.0, guestCount: 17_600, compSales: 3.1, status: 'good', aiRank: 6 },
-  { id: 109, name: 'Waterfront', revenue: 320_000, foodCost: 29.8, laborCost: 32.0, nps: 37, mysteryShop: 80, ticketTime: 13.2, guestCount: 17_100, compSales: 1.9, status: 'watch', aiRank: 7 },
-  { id: 103, name: 'Mall Location', revenue: 310_000, foodCost: 30.5, laborCost: 33.2, nps: 35, mysteryShop: 76, ticketTime: 13.8, guestCount: 16_500, compSales: -0.5, status: 'watch', aiRank: 8 },
-  { id: 110, name: 'Highway Plaza', revenue: 298_000, foodCost: 30.8, laborCost: 33.8, nps: 31, mysteryShop: 74, ticketTime: 14.1, guestCount: 15_900, compSales: -2.1, status: 'watch', aiRank: 9 },
-  { id: 106, name: 'Interstate', revenue: 295_000, foodCost: 31.2, laborCost: 34.5, nps: 28, mysteryShop: 71, ticketTime: 14.8, guestCount: 15_700, compSales: -3.8, status: 'critical', aiRank: 10 },
+  { id: 101, name: 'Downtown', revenue: 420_000, foodCost: 27.8, laborCost: 30.1, nps: 48, mysteryShop: 92, ticketTime: 11.2, guestCount: 22_400, compSales: 12.1, status: 'top', aiRank: 1, csat: 86, googleRating: 4.7, loyaltyEnrollment: 18.2 },
+  { id: 104, name: 'University', revenue: 365_000, foodCost: 28.1, laborCost: 29.8, nps: 51, mysteryShop: 90, ticketTime: 11.8, guestCount: 19_500, compSales: 9.8, status: 'top', aiRank: 2, csat: 88, googleRating: 4.8, loyaltyEnrollment: 16.5 },
+  { id: 102, name: 'Airport Rd', revenue: 385_000, foodCost: 29.2, laborCost: 31.8, nps: 44, mysteryShop: 88, ticketTime: 12.1, guestCount: 20_500, compSales: 7.4, status: 'good', aiRank: 3, csat: 82, googleRating: 4.5, loyaltyEnrollment: 14.8 },
+  { id: 107, name: 'Riverside', revenue: 355_000, foodCost: 28.5, laborCost: 30.4, nps: 43, mysteryShop: 86, ticketTime: 12.5, guestCount: 18_900, compSales: 6.2, status: 'good', aiRank: 4, csat: 80, googleRating: 4.4, loyaltyEnrollment: 13.6 },
+  { id: 105, name: 'Suburbs', revenue: 340_000, foodCost: 28.9, laborCost: 31.0, nps: 40, mysteryShop: 84, ticketTime: 12.8, guestCount: 18_100, compSales: 4.8, status: 'good', aiRank: 5, csat: 78, googleRating: 4.4, loyaltyEnrollment: 12.1 },
+  { id: 108, name: 'Tech Park', revenue: 330_000, foodCost: 29.4, laborCost: 31.5, nps: 39, mysteryShop: 82, ticketTime: 13.0, guestCount: 17_600, compSales: 3.1, status: 'good', aiRank: 6, csat: 76, googleRating: 4.3, loyaltyEnrollment: 11.4 },
+  { id: 109, name: 'Waterfront', revenue: 320_000, foodCost: 29.8, laborCost: 32.0, nps: 37, mysteryShop: 80, ticketTime: 13.2, guestCount: 17_100, compSales: 1.9, status: 'watch', aiRank: 7, csat: 72, googleRating: 4.2, loyaltyEnrollment: 10.2 },
+  { id: 103, name: 'Mall Location', revenue: 310_000, foodCost: 30.5, laborCost: 33.2, nps: 35, mysteryShop: 76, ticketTime: 13.8, guestCount: 16_500, compSales: -0.5, status: 'watch', aiRank: 8, csat: 68, googleRating: 4.0, loyaltyEnrollment: 9.1 },
+  { id: 110, name: 'Highway Plaza', revenue: 298_000, foodCost: 30.8, laborCost: 33.8, nps: 31, mysteryShop: 74, ticketTime: 14.1, guestCount: 15_900, compSales: -2.1, status: 'watch', aiRank: 9, csat: 64, googleRating: 3.8, loyaltyEnrollment: 7.8 },
+  { id: 106, name: 'Interstate', revenue: 295_000, foodCost: 31.2, laborCost: 34.5, nps: 28, mysteryShop: 71, ticketTime: 14.8, guestCount: 15_700, compSales: -3.8, status: 'critical', aiRank: 10, csat: 58, googleRating: 3.6, loyaltyEnrollment: 5.4 },
 ];
 
 // Time-of-day performance
