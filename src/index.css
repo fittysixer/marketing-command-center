@@ -2,16 +2,16 @@
 @import "tailwindcss";
 
 :root {
-  --bg-base: #141418;
-  --bg-surface: #1c1c24;
-  --bg-card: #222230;
-  --bg-card-hover: #2a2a3a;
-  --bg-elevated: #2d2d3f;
-  --border: #333346;
-  --border-subtle: #2a2a3c;
+  --bg-base: #0a0a0a;
+  --bg-surface: #1a1a1e;
+  --bg-card: #1e1e22;
+  --bg-card-hover: #262628;
+  --bg-elevated: #2a2a2e;
+  --border: #2a2a2e;
+  --border-subtle: #232326;
   --text-primary: #f0f0f5;
-  --text-secondary: #a0a0b8;
-  --text-muted: #6b6b82;
+  --text-secondary: #a0a0a4;
+  --text-muted: #7a7a80;
   --accent: #c8102e;
   --accent-hover: #e0182f;
   --accent-light: rgba(200, 16, 46, 0.12);
@@ -37,16 +37,16 @@ body {
 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #333346; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #444460; }
+::-webkit-scrollbar-thumb { background: #2a2a2e; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3a3a3e; }
 
 /* Recharts overrides for dark theme */
-.recharts-cartesian-grid line { stroke: #2a2a3c !important; }
-.recharts-text { fill: #6b6b82 !important; }
+.recharts-cartesian-grid line { stroke: #232326 !important; }
+.recharts-text { fill: #7a7a80 !important; }
 .recharts-tooltip-wrapper .recharts-default-tooltip {
-  background: #222230 !important;
-  border-color: #333346 !important;
+  background: #1e1e22 !important;
+  border-color: #2a2a2e !important;
   border-radius: 8px !important;
   color: #f0f0f5 !important;
 }
-.recharts-tooltip-item { color: #a0a0b8 !important; }
+.recharts-tooltip-item { color: #a0a0a4 !important; }

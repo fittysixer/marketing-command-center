@@ -254,3 +254,131 @@ export const daypartAnalysis = {
     weekend: { avgRevenue: 78_000, avgGuests: 4_160 },
   },
 };
+
+// ============================================
+// LOCAL STORE MARKETING DATA
+// ============================================
+
+// Store directory for local marketing
+export const localMarketingStores = [
+  { id: 1247, name: 'Pentagon City', city: 'Arlington, VA', dm: 'Sarah Chen', region: 'Mid-Atlantic' },
+  { id: 1302, name: 'Georgetown', city: 'Washington, DC', dm: 'Marcus Williams', region: 'Mid-Atlantic' },
+  { id: 1089, name: 'Bethesda Row', city: 'Bethesda, MD', dm: 'Jessica Park', region: 'Mid-Atlantic' },
+  { id: 1456, name: 'King of Prussia', city: 'King of Prussia, PA', dm: 'David Miller', region: 'Northeast' },
+  { id: 1523, name: 'Times Square', city: 'New York, NY', dm: 'Amanda Torres', region: 'Northeast' },
+];
+
+// Complete local store marketing dashboard data
+export const storeLocalDashboard = {
+  storeId: 1247,
+  storeName: 'Pentagon City',
+  city: 'Arlington, VA',
+  districtManager: 'Sarah Chen',
+  gm: 'Mike Thompson',
+
+  // Trade Area Demographics
+  tradeArea: {
+    population1mi: 28400,
+    population3mi: 142000,
+    population5mi: 385000,
+    medianIncome: 94200,
+    medianAge: 34,
+    collegeEducated: 68,
+    daytimePopulation: 186000,
+    topEmployers: ['Pentagon', 'Amazon HQ2', 'Deloitte', 'Booz Allen'],
+    householdGrowth: 3.2,
+    competitorCount: 14,
+  },
+
+  // Active Local Campaigns
+  activeCampaigns: [
+    { name: 'Pentagon Lunch Rush', type: 'Geo-fence', status: 'Active', budget: 2400, spent: 1680, impressions: 48200, conversions: 312, roi: 4.2, startDate: '2025-03-01', endDate: '2025-04-30' },
+    { name: 'Amazon HQ2 Welcome', type: 'Corporate', status: 'Active', budget: 1800, spent: 1200, impressions: 22000, conversions: 185, roi: 5.1, startDate: '2025-03-15', endDate: '2025-05-15' },
+    { name: 'Spring Youth Sports', type: 'Sponsorship', status: 'Active', budget: 3000, spent: 2100, impressions: 35400, conversions: 228, roi: 3.8, startDate: '2025-03-01', endDate: '2025-06-30' },
+    { name: 'Local Google Ads', type: 'Digital', status: 'Active', budget: 1500, spent: 980, impressions: 62000, conversions: 410, roi: 6.3, startDate: '2025-02-01', endDate: '2025-04-30' },
+    { name: 'Mothers Day Promo', type: 'Seasonal', status: 'Scheduled', budget: 2000, spent: 0, impressions: 0, conversions: 0, roi: 0, startDate: '2025-05-01', endDate: '2025-05-14' },
+  ],
+
+  // Community Partnerships
+  partnerships: [
+    { name: 'Arlington Youth Soccer League', type: 'Sports Sponsorship', investment: 1500, term: 'Annual', status: 'Active', impressions: 12000, redemptions: 340 },
+    { name: 'Wakefield High School Booster', type: 'School Partnership', investment: 800, term: 'Academic Year', status: 'Active', impressions: 5200, redemptions: 180 },
+    { name: 'Pentagon Federal Credit Union', type: 'Corporate', investment: 0, term: 'Ongoing', status: 'Active', impressions: 8400, redemptions: 520 },
+    { name: 'Crystal City BID', type: 'Business Association', investment: 600, term: 'Annual', status: 'Active', impressions: 15000, redemptions: 210 },
+  ],
+
+  // Competitive Landscape (nearby)
+  competitors: [
+    { name: 'Shake Shack', distance: '0.3 mi', rating: 4.2, reviews: 820, priceRange: '$$', threat: 'High' },
+    { name: 'Smashburger', distance: '0.5 mi', rating: 3.8, reviews: 340, priceRange: '$$', threat: 'Medium' },
+    { name: "Wendy's", distance: '0.4 mi', rating: 3.5, reviews: 210, priceRange: '$', threat: 'Low' },
+    { name: 'Burger King', distance: '0.6 mi', rating: 3.3, reviews: 180, priceRange: '$', threat: 'Low' },
+    { name: 'Elevation Burger', distance: '0.8 mi', rating: 4.0, reviews: 290, priceRange: '$$', threat: 'Medium' },
+    { name: 'Good Stuff Eatery', distance: '1.2 mi', rating: 4.3, reviews: 560, priceRange: '$$', threat: 'Medium' },
+  ],
+
+  // Google Business Profile & Local SEO
+  localSEO: {
+    googleRating: 4.4,
+    googleReviews: 1240,
+    yelpRating: 4.0,
+    yelpReviews: 380,
+    avgResponseTime: '2.4 hrs',
+    responseRate: 94,
+    searchImpressions30d: 18400,
+    searchClicks30d: 2100,
+    directionsRequests30d: 890,
+    phoneCalls30d: 320,
+    photoViews30d: 4200,
+    topSearchTerms: ['five guys near me', 'burgers pentagon city', 'five guys arlington', 'best burger near pentagon'],
+  },
+
+  // Geo-Targeting Performance
+  geoTargeting: {
+    activeFences: 4,
+    totalReach: 186000,
+    avgCTR: 2.8,
+    conversionRate: 6.5,
+    fences: [
+      { name: 'Pentagon Complex', radius: '0.5 mi', population: 45000, impressions: 22000, clicks: 680, conversions: 44 },
+      { name: 'Crystal City Corridor', radius: '0.3 mi', population: 32000, impressions: 18500, clicks: 520, conversions: 38 },
+      { name: 'Pentagon City Mall', radius: '0.2 mi', population: 15000, impressions: 8200, clicks: 310, conversions: 28 },
+      { name: 'Amazon HQ2 Campus', radius: '0.4 mi', population: 28000, impressions: 14000, clicks: 440, conversions: 32 },
+    ],
+    conquestCampaigns: [
+      { targetBrand: 'Shake Shack', impressionsNearby: 8400, redirections: 180, conversionRate: 2.1 },
+      { targetBrand: 'Smashburger', impressionsNearby: 5200, redirections: 110, conversionRate: 2.1 },
+    ],
+  },
+
+  // In-Store Merchandising
+  merchandising: {
+    overallScore: 87,
+    lastAudit: '2025-03-28',
+    categories: [
+      { name: 'Menu Board Compliance', score: 92 },
+      { name: 'Window Graphics', score: 85 },
+      { name: 'Promotional Signage', score: 88 },
+      { name: 'Seasonal Display', score: 78 },
+      { name: 'Digital Screens', score: 90 },
+    ],
+  },
+
+  // Monthly Performance Trends
+  monthlyTrends: [
+    { month: 'Oct', localSpend: 4200, attributedRevenue: 18400, newCustomers: 120, repeatRate: 42 },
+    { month: 'Nov', localSpend: 5100, attributedRevenue: 24200, newCustomers: 145, repeatRate: 44 },
+    { month: 'Dec', localSpend: 6200, attributedRevenue: 31500, newCustomers: 180, repeatRate: 46 },
+    { month: 'Jan', localSpend: 3800, attributedRevenue: 16800, newCustomers: 95, repeatRate: 40 },
+    { month: 'Feb', localSpend: 4500, attributedRevenue: 21400, newCustomers: 128, repeatRate: 43 },
+    { month: 'Mar', localSpend: 5800, attributedRevenue: 28600, newCustomers: 165, repeatRate: 47 },
+  ],
+
+  // AI Recommendations
+  aiRecommendations: [
+    { priority: 'P0', insight: 'Amazon HQ2 lunch traffic underserved — geo-fence expansion could capture 400+ weekly visits', action: 'Extend HQ2 geo-fence radius to 0.6mi, increase bid 20% during 11:30am-1:30pm', estImpact: '+$8,200/mo revenue' },
+    { priority: 'P1', insight: 'Google Business Profile photos are 6+ months old — refreshed photos drive 35% more direction requests', action: 'Schedule professional photo shoot, update hero images and menu photos', estImpact: '+12% foot traffic' },
+    { priority: 'P1', insight: 'Seasonal display score at 78% — lowest category. Spring refresh overdue', action: 'Deploy spring promotional kit by April 10', estImpact: '+5% promo item sales' },
+    { priority: 'P2', insight: 'Shake Shack conquest campaign showing strong 2.1% conversion — scale opportunity', action: 'Increase conquest budget by $500/mo, add Good Stuff Eatery as target', estImpact: '+85 conquested visits/mo' },
+  ],
+};

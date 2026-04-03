@@ -4,15 +4,15 @@ import { Heart, Star, MessageCircle, Users, TrendingUp, TrendingDown, Minus, Shi
 import { guestExperience, customerSegments } from '../data/mockData'
 
 function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <div className={`rounded-lg ${className}`} style={{ background: '#222230', border: '1px solid #333346' }}>{children}</div>
+  return <div className={`rounded-lg ${className}`} style={{ background: '#1e1e22', border: '1px solid #2a2a2e' }}>{children}</div>
 }
 
 function StatCard({ label, value, subtext, color }: { label: string; value: string; subtext: string; color: string }) {
   return (
     <div className="text-center">
-      <div className="text-[10px] uppercase tracking-wider mb-1" style={{ color: '#6b6b82' }}>{label}</div>
+      <div className="text-[10px] uppercase tracking-wider mb-1" style={{ color: '#7a7a80' }}>{label}</div>
       <div className={`text-2xl font-bold ${color}`}>{value}</div>
-      <div className="text-[10px] mt-0.5" style={{ color: '#6b6b82' }}>{subtext}</div>
+      <div className="text-[10px] mt-0.5" style={{ color: '#7a7a80' }}>{subtext}</div>
     </div>
   )
 }
@@ -63,38 +63,38 @@ export function GuestExperience({ compact = false }: { compact?: boolean }) {
       {/* KPI Row */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
         <Card className="p-4">
-          <div className="text-[10px] uppercase tracking-wider" style={{ color: '#6b6b82' }}>NPS Score</div>
+          <div className="text-[10px] uppercase tracking-wider" style={{ color: '#7a7a80' }}>NPS Score</div>
           <div className="text-3xl font-bold text-emerald-600 mt-1">{d.nps.current}</div>
           <div className="flex items-center gap-1 mt-1 text-emerald-500 text-xs font-semibold">
             <TrendingUp size={12} /> +{d.nps.current - d.nps.prior} vs prior
           </div>
-          <div className="text-[10px] mt-0.5" style={{ color: '#6b6b82' }}>Industry: {d.nps.industry}</div>
+          <div className="text-[10px] mt-0.5" style={{ color: '#7a7a80' }}>Industry: {d.nps.industry}</div>
         </Card>
         <Card className="p-4">
-          <div className="text-[10px] uppercase tracking-wider" style={{ color: '#6b6b82' }}>CSAT</div>
-          <div className="text-3xl font-bold text-blue-600 mt-1">{d.csat.current}<span className="text-lg" style={{ color: '#6b6b82' }}>/{d.csat.scale}</span></div>
+          <div className="text-[10px] uppercase tracking-wider" style={{ color: '#7a7a80' }}>CSAT</div>
+          <div className="text-3xl font-bold text-blue-600 mt-1">{d.csat.current}<span className="text-lg" style={{ color: '#7a7a80' }}>/{d.csat.scale}</span></div>
           <div className="flex items-center gap-1 mt-1 text-emerald-500 text-xs font-semibold">
             <TrendingUp size={12} /> +{(d.csat.current - d.csat.prior).toFixed(1)} vs prior
           </div>
         </Card>
         <Card className="p-4">
-          <div className="text-[10px] uppercase tracking-wider" style={{ color: '#6b6b82' }}>Online Ratings</div>
+          <div className="text-[10px] uppercase tracking-wider" style={{ color: '#7a7a80' }}>Online Ratings</div>
           <div className="flex items-center gap-1 mt-2">
             <Star size={14} className="text-amber-400 fill-amber-400" />
             <span className="text-xl font-bold" style={{ color: '#f0f0f5' }}>{d.onlineRating.google}</span>
-            <span className="text-[10px] ml-1" style={{ color: '#6b6b82' }}>Google</span>
+            <span className="text-[10px] ml-1" style={{ color: '#7a7a80' }}>Google</span>
           </div>
-          <div className="text-[10px] mt-1" style={{ color: '#6b6b82' }}>Yelp: {d.onlineRating.yelp} | TA: {d.onlineRating.tripadvisor}</div>
+          <div className="text-[10px] mt-1" style={{ color: '#7a7a80' }}>Yelp: {d.onlineRating.yelp} | TA: {d.onlineRating.tripadvisor}</div>
         </Card>
         <Card className="p-4">
-          <div className="text-[10px] uppercase tracking-wider" style={{ color: '#6b6b82' }}>Loyalty Members</div>
+          <div className="text-[10px] uppercase tracking-wider" style={{ color: '#7a7a80' }}>Loyalty Members</div>
           <div className="text-2xl font-bold mt-1" style={{ color: '#f0f0f5' }}>{(d.loyaltyMetrics.activeMembers / 1000).toFixed(1)}K</div>
-          <div className="text-[10px] mt-1" style={{ color: '#6b6b82' }}>Enrollment: {d.loyaltyMetrics.enrollmentRate}% | Spend lift: +{d.loyaltyMetrics.memberSpendLift}%</div>
+          <div className="text-[10px] mt-1" style={{ color: '#7a7a80' }}>Enrollment: {d.loyaltyMetrics.enrollmentRate}% | Spend lift: +{d.loyaltyMetrics.memberSpendLift}%</div>
         </Card>
         <Card className="p-4">
-          <div className="text-[10px] uppercase tracking-wider" style={{ color: '#6b6b82' }}>Mystery Shop</div>
-          <div className="text-3xl font-bold mt-1" style={{ color: '#f0f0f5' }}>{d.mysteryShopScores.overall}<span className="text-lg" style={{ color: '#6b6b82' }}>/100</span></div>
-          <div className="text-[10px] mt-1" style={{ color: '#6b6b82' }}>Upselling lowest at {d.mysteryShopScores.upselling}%</div>
+          <div className="text-[10px] uppercase tracking-wider" style={{ color: '#7a7a80' }}>Mystery Shop</div>
+          <div className="text-3xl font-bold mt-1" style={{ color: '#f0f0f5' }}>{d.mysteryShopScores.overall}<span className="text-lg" style={{ color: '#7a7a80' }}>/100</span></div>
+          <div className="text-[10px] mt-1" style={{ color: '#7a7a80' }}>Upselling lowest at {d.mysteryShopScores.upselling}%</div>
         </Card>
       </div>
 
@@ -102,15 +102,15 @@ export function GuestExperience({ compact = false }: { compact?: boolean }) {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         <Card className="p-4">
           <h3 className="text-sm font-semibold mb-1" style={{ color: '#f0f0f5' }}>NPS Trend (12-Month)</h3>
-          <p className="text-[11px] mb-4" style={{ color: '#6b6b82' }}>AI predicts NPS 45 by Q2 if current trajectory holds</p>
+          <p className="text-[11px] mb-4" style={{ color: '#7a7a80' }}>AI predicts NPS 45 by Q2 if current trajectory holds</p>
           <ResponsiveContainer width="100%" height={220}>
             <LineChart data={npsData} margin={{ left: 0, right: 10, top: 5, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#2a2a3c" />
-              <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#6b6b82' }} />
-              <YAxis domain={[25, 50]} tick={{ fontSize: 10, fill: '#6b6b82' }} />
-              <Tooltip contentStyle={{ fontSize: 12, borderRadius: 6, background: '#2d2d3f', borderColor: '#333346', color: '#f0f0f5' }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#232326" />
+              <XAxis dataKey="month" tick={{ fontSize: 10, fill: '#7a7a80' }} />
+              <YAxis domain={[25, 50]} tick={{ fontSize: 10, fill: '#7a7a80' }} />
+              <Tooltip contentStyle={{ fontSize: 12, borderRadius: 6, background: '#2a2a2e', borderColor: '#2a2a2e', color: '#f0f0f5' }} />
               <Line type="monotone" dataKey="nps" stroke="#10b981" strokeWidth={2} dot={{ r: 3 }} name="NPS" />
-              <Line type="monotone" dataKey="industry" stroke="#6b6b82" strokeDasharray="4 4" strokeWidth={1.5} dot={false} name="Industry Avg" />
+              <Line type="monotone" dataKey="industry" stroke="#7a7a80" strokeDasharray="4 4" strokeWidth={1.5} dot={false} name="Industry Avg" />
             </LineChart>
           </ResponsiveContainer>
         </Card>
@@ -120,7 +120,7 @@ export function GuestExperience({ compact = false }: { compact?: boolean }) {
           <div className="flex justify-center gap-6 mb-4">
             <ResponsiveContainer width={160} height={160}>
               <PieChart>
-                <Pie data={sentimentPie} cx="50%" cy="50%" innerRadius={45} outerRadius={65} dataKey="value" strokeWidth={2} stroke="#222230">
+                <Pie data={sentimentPie} cx="50%" cy="50%" innerRadius={45} outerRadius={65} dataKey="value" strokeWidth={2} stroke="#1e1e22">
                   {sentimentPie.map((entry, i) => <Cell key={i} fill={entry.color} />)}
                 </Pie>
               </PieChart>
@@ -129,12 +129,12 @@ export function GuestExperience({ compact = false }: { compact?: boolean }) {
               {sentimentPie.map((s) => (
                 <div key={s.name} className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full" style={{ background: s.color }} />
-                  <span className="text-xs" style={{ color: '#a0a0b8' }}>{s.name}: <strong>{s.value}%</strong></span>
+                  <span className="text-xs" style={{ color: '#a0a0a4' }}>{s.name}: <strong>{s.value}%</strong></span>
                 </div>
               ))}
             </div>
           </div>
-          <p className="text-[11px] text-center" style={{ color: '#6b6b82' }}>Analyzed 3,270 reviews + 8,420 social mentions via NLP</p>
+          <p className="text-[11px] text-center" style={{ color: '#7a7a80' }}>Analyzed 3,270 reviews + 8,420 social mentions via NLP</p>
         </Card>
       </div>
 
@@ -144,21 +144,21 @@ export function GuestExperience({ compact = false }: { compact?: boolean }) {
         <Card className="p-4">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-sm font-semibold" style={{ color: '#f0f0f5' }}>Top Themes from AI Text Analysis</h3>
-            <MessageCircle size={14} style={{ color: '#6b6b82' }} />
+            <MessageCircle size={14} style={{ color: '#7a7a80' }} />
           </div>
           <div className="space-y-2.5">
             {d.topThemes.map((theme) => (
               <div key={theme.theme}>
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-medium" style={{ color: '#a0a0b8' }}>{theme.theme}</span>
+                  <span className="text-xs font-medium" style={{ color: '#a0a0a4' }}>{theme.theme}</span>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px]" style={{ color: '#6b6b82' }}>{theme.mentions} mentions</span>
+                    <span className="text-[10px]" style={{ color: '#7a7a80' }}>{theme.mentions} mentions</span>
                     {theme.trend === 'up' ? <TrendingUp size={11} className="text-emerald-500" /> :
                      theme.trend === 'down' ? <TrendingDown size={11} className="text-red-500" /> :
-                     <Minus size={11} style={{ color: '#6b6b82' }} />}
+                     <Minus size={11} style={{ color: '#7a7a80' }} />}
                   </div>
                 </div>
-                <div className="h-2 rounded-full overflow-hidden" style={{ background: '#2a2a3c' }}>
+                <div className="h-2 rounded-full overflow-hidden" style={{ background: '#232326' }}>
                   <div
                     className="h-full rounded-full transition-all"
                     style={{
@@ -179,17 +179,17 @@ export function GuestExperience({ compact = false }: { compact?: boolean }) {
         <Card className="p-4">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-sm font-semibold" style={{ color: '#f0f0f5' }}>Mystery Shop Scorecard</h3>
-            <Shield size={14} style={{ color: '#6b6b82' }} />
+            <Shield size={14} style={{ color: '#7a7a80' }} />
           </div>
           <ResponsiveContainer width="100%" height={260}>
             <RadarChart data={mysteryShopData}>
-              <PolarGrid stroke="#2a2a3c" />
-              <PolarAngleAxis dataKey="subject" tick={{ fontSize: 10, fill: '#a0a0b8' }} />
-              <PolarRadiusAxis domain={[0, 100]} tick={{ fontSize: 9, fill: '#6b6b82' }} />
+              <PolarGrid stroke="#232326" />
+              <PolarAngleAxis dataKey="subject" tick={{ fontSize: 10, fill: '#a0a0a4' }} />
+              <PolarRadiusAxis domain={[0, 100]} tick={{ fontSize: 9, fill: '#7a7a80' }} />
               <Radar dataKey="score" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.2} strokeWidth={2} />
             </RadarChart>
           </ResponsiveContainer>
-          <div className="text-center text-[10px] mt-1" style={{ color: '#6b6b82' }}>
+          <div className="text-center text-[10px] mt-1" style={{ color: '#7a7a80' }}>
             Biggest opportunity: <strong className="text-amber-600">Upselling (62%)</strong> — AI recommends suggestive selling training focus
           </div>
         </Card>
@@ -208,7 +208,7 @@ export function GuestExperience({ compact = false }: { compact?: boolean }) {
             { label: 'Churn Risk', value: `${d.loyaltyMetrics.churnRisk}%`, color: 'text-red-500' },
           ].map((m) => (
             <div key={m.label} className="text-center">
-              <div className="text-[10px] uppercase tracking-wider" style={{ color: '#6b6b82' }}>{m.label}</div>
+              <div className="text-[10px] uppercase tracking-wider" style={{ color: '#7a7a80' }}>{m.label}</div>
               <div className={`text-xl font-bold mt-1 ${m.color}`}>{m.value}</div>
             </div>
           ))}
@@ -223,14 +223,14 @@ export function GuestExperience({ compact = false }: { compact?: boolean }) {
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-sm font-semibold" style={{ color: '#f0f0f5' }}>Customer Segmentation — AI Cohort Analysis</h3>
-            <p className="text-[11px]" style={{ color: '#6b6b82' }}>Lifetime value and retention by customer tier</p>
+            <p className="text-[11px]" style={{ color: '#7a7a80' }}>Lifetime value and retention by customer tier</p>
           </div>
           <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold" style={{ background: 'rgba(139, 92, 246, 0.15)', color: '#8b5cf6' }}>AI-Enhanced CX</span>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr style={{ background: '#2a2a3a', color: '#6b6b82' }}>
+              <tr style={{ background: '#262628', color: '#7a7a80' }}>
                 <th className="px-4 py-2 text-left font-medium">Segment</th>
                 <th className="px-4 py-2 text-right font-medium">% of Base</th>
                 <th className="px-4 py-2 text-right font-medium">Visits/Yr</th>
@@ -242,12 +242,12 @@ export function GuestExperience({ compact = false }: { compact?: boolean }) {
             </thead>
             <tbody>
               {customerSegments.segments.map((seg) => (
-                <tr key={seg.name} style={{ borderTop: '1px solid #2a2a3a' }}>
+                <tr key={seg.name} style={{ borderTop: '1px solid #262628' }}>
                   <td className="px-4 py-2.5 font-medium" style={{ color: '#f0f0f5' }}>{seg.name}</td>
-                  <td className="px-4 py-2.5 text-right" style={{ color: '#a0a0b8' }}>{seg.pct}%</td>
+                  <td className="px-4 py-2.5 text-right" style={{ color: '#a0a0a4' }}>{seg.pct}%</td>
                   <td className="px-4 py-2.5 text-right font-mono" style={{ color: '#f0f0f5' }}>{seg.visits}</td>
                   <td className="px-4 py-2.5 text-right font-mono" style={{ color: '#f0f0f5' }}>${seg.avgCheck.toFixed(2)}</td>
-                  <td className="px-4 py-2.5 text-right font-mono font-semibold" style={{ color: seg.ltv > 1000 ? '#10b981' : '#a0a0b8' }}>${seg.ltv.toLocaleString()}</td>
+                  <td className="px-4 py-2.5 text-right font-mono font-semibold" style={{ color: seg.ltv > 1000 ? '#10b981' : '#a0a0a4' }}>${seg.ltv.toLocaleString()}</td>
                   <td className="px-4 py-2.5 text-right">
                     <span style={{ color: seg.retention >= 80 ? '#10b981' : seg.retention < 40 ? '#ef4444' : '#f59e0b' }}>{seg.retention}%</span>
                   </td>
@@ -271,10 +271,10 @@ export function GuestExperience({ compact = false }: { compact?: boolean }) {
             {customerSegments.conversionFunnel.map((step, i) => (
               <div key={step.stage}>
                 <div className="flex justify-between items-baseline mb-1">
-                  <span className="text-xs font-medium" style={{ color: '#a0a0b8' }}>{step.stage}</span>
+                  <span className="text-xs font-medium" style={{ color: '#a0a0a4' }}>{step.stage}</span>
                   <span className="text-sm font-bold" style={{ color: '#f0f0f5' }}>{step.rate}%</span>
                 </div>
-                <div className="h-3 rounded-full overflow-hidden" style={{ background: '#2a2a3c' }}>
+                <div className="h-3 rounded-full overflow-hidden" style={{ background: '#232326' }}>
                   <div className="h-full rounded-full" style={{ width: `${step.rate}%`, background: i === 0 ? '#3b82f6' : i === 1 ? '#8b5cf6' : '#f59e0b' }} />
                 </div>
               </div>
@@ -288,18 +288,18 @@ export function GuestExperience({ compact = false }: { compact?: boolean }) {
         <Card className="p-4">
           <h3 className="text-sm font-semibold mb-4" style={{ color: '#f0f0f5' }}>Lapsed Guest Reactivation</h3>
           <div className="space-y-4">
-            <div className="text-center p-4 rounded-lg" style={{ background: '#2a2a3c' }}>
+            <div className="text-center p-4 rounded-lg" style={{ background: '#232326' }}>
               <div className="text-3xl font-bold" style={{ color: '#f59e0b' }}>{customerSegments.reactivationOpportunity.lapsedCount.toLocaleString()}</div>
-              <div className="text-[11px] mt-1" style={{ color: '#6b6b82' }}>Lapsed guests identified by AI</div>
+              <div className="text-[11px] mt-1" style={{ color: '#7a7a80' }}>Lapsed guests identified by AI</div>
             </div>
             <div className="grid grid-cols-2 gap-3">
-              <div className="text-center p-3 rounded-lg" style={{ background: '#2a2a3c' }}>
+              <div className="text-center p-3 rounded-lg" style={{ background: '#232326' }}>
                 <div className="text-lg font-bold" style={{ color: '#10b981' }}>${(customerSegments.reactivationOpportunity.estimatedRevenue / 1000).toFixed(0)}K</div>
-                <div className="text-[10px]" style={{ color: '#6b6b82' }}>Revenue opportunity</div>
+                <div className="text-[10px]" style={{ color: '#7a7a80' }}>Revenue opportunity</div>
               </div>
-              <div className="text-center p-3 rounded-lg" style={{ background: '#2a2a3c' }}>
+              <div className="text-center p-3 rounded-lg" style={{ background: '#232326' }}>
                 <div className="text-lg font-bold" style={{ color: '#3b82f6' }}>{customerSegments.reactivationOpportunity.winBackRate}%</div>
-                <div className="text-[10px]" style={{ color: '#6b6b82' }}>Predicted win-back rate</div>
+                <div className="text-[10px]" style={{ color: '#7a7a80' }}>Predicted win-back rate</div>
               </div>
             </div>
             <div className="p-3 rounded-md border" style={{ background: 'rgba(245, 158, 11, 0.08)', borderColor: 'rgba(245, 158, 11, 0.2)' }}>

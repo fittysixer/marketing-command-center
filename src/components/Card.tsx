@@ -2,7 +2,7 @@ export function Card({ children, className = '', style = {} }: { children: React
   return (
     <div
       className={`rounded-lg ${className}`}
-      style={{ background: '#222230', border: '1px solid #333346', ...style }}
+      style={{ background: '#1e1e22', border: '1px solid #2a2a2e', ...style }}
     >
       {children}
     </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Menu, Home, Search, RefreshCw, Bell, ChevronRight } from 'lucide-react'
+import { Menu, Home, Search, RefreshCw, Bell } from 'lucide-react'
 import { HamburgerMenu } from './Sidebar'
 
 const mainTabs = [
@@ -8,6 +8,7 @@ const mainTabs = [
   { id: 'financials', label: 'FINANCIAL' },
   { id: 'guest-experience', label: 'GUEST CX' },
   { id: 'operations', label: 'OPERATIONS' },
+  { id: 'local-marketing', label: 'LOCAL MARKETING' },
   { id: 'comparison', label: 'KF vs. US' },
 ]
 
@@ -17,7 +18,18 @@ const subNavItems: Record<string, string[]> = {
   'financials': ['P&L Statement', 'Revenue Trends', 'Cost Control', 'Daypart Analysis'],
   'guest-experience': ['NPS & CSAT', 'Sentiment', 'Loyalty', 'Mystery Shop', 'Segmentation'],
   'operations': ['Speed of Service', 'Store Scorecard', 'Labor Analytics', 'Peak Hours'],
+  'local-marketing': ['Store Dashboard', 'Campaigns', 'Trade Area', 'Geo-Targeting', 'Partnerships'],
   'comparison': ['Feature Matrix', 'Expert Panels', 'ROI Analysis'],
+}
+
+const sectionBreadcrumb: Record<string, string> = {
+  'overview': 'Command Center',
+  'market-force': 'Market Force',
+  'financials': 'Financial',
+  'guest-experience': 'Guest CX',
+  'operations': 'Operations',
+  'local-marketing': 'Local Marketing',
+  'comparison': 'KF vs. Us',
 }
 
 export function TopNav({ activeSection, onSectionChange }: { activeSection: string; onSectionChange: (s: any) => void }) {
@@ -27,38 +39,38 @@ export function TopNav({ activeSection, onSectionChange }: { activeSection: stri
     <>
       <HamburgerMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
 
-      {/* Main header bar */}
+      {/* Main header bar — matches Brand Hub: 44px, #c8102e, px-3 */}
       <div className="sticky top-0 z-30" style={{ background: '#c8102e' }}>
-        <div className="flex items-center h-11 px-3 gap-1">
+        <div className="flex items-center px-3" style={{ height: '44px' }}>
           {/* Hamburger */}
           <button onClick={() => setMenuOpen(true)} className="p-2 rounded hover:bg-white/10 transition-colors">
             <Menu size={18} color="white" />
           </button>
 
-          {/* Logo */}
-          <span className="text-base font-black tracking-wide text-white ml-1 mr-3" style={{ fontFamily: '"DM Sans", Inter, system-ui, sans-serif' }}>
+          {/* Logo — italic bold like Brand Hub */}
+          <span className="text-[15px] text-white ml-2 mr-3" style={{ fontFamily: '"DM Sans", Inter, system-ui, sans-serif', fontWeight: 900, fontStyle: 'italic', letterSpacing: '0.5px' }}>
             FIVE GUYS
           </span>
 
-          {/* Divider */}
-          <div className="w-px h-6 mx-1" style={{ background: 'rgba(255,255,255,0.25)' }} />
-
-          {/* Home button */}
-          <a href="https://fsagent-modular.vercel.app/" className="p-2 rounded hover:bg-white/10 transition-colors">
-            <Home size={16} color="white" />
+          {/* Home button — dark rounded square with border, 48x26, matching Brand Hub */}
+          <a
+            href="https://fsagent-modular.vercel.app/"
+            className="flex items-center justify-center hover:bg-black/25 transition-colors"
+            style={{ background: 'rgba(0,0,0,0.15)', borderRadius: '5px', width: '36px', height: '26px', border: '1px solid rgba(255,255,255,0.2)' }}
+          >
+            <Home size={14} color="white" />
           </a>
 
           {/* Main tabs */}
-          <div className="flex items-center ml-2 h-full">
+          <div className="flex items-center ml-3 h-full">
             {mainTabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => onSectionChange(tab.id)}
-                className="h-full px-4 text-[11px] font-semibold tracking-wider transition-colors relative"
+                className="h-full px-3 text-[11px] font-semibold tracking-wider transition-colors relative"
                 style={{
-                  color: activeSection === tab.id ? '#fff' : 'rgba(255,255,255,0.7)',
-                  background: activeSection === tab.id ? 'rgba(0,0,0,0.15)' : 'transparent',
-                  fontFamily: '"DM Sans", Inter, system-ui, sans-serif',
+                  color: activeSection === tab.id ? '#fff' : 'rgba(255,255,255,0.65)',
+                  background: activeSection === tab.id ? 'rgba(0,0,0,0.18)' : 'transparent',
                 }}
               >
                 {tab.label}
@@ -72,47 +84,49 @@ export function TopNav({ activeSection, onSectionChange }: { activeSection: stri
           {/* Right side */}
           <div className="ml-auto flex items-center gap-1">
             <div className="relative">
-              <Search size={14} color="rgba(255,255,255,0.7)" className="absolute left-2.5 top-1/2 -translate-y-1/2" />
+              <Search size={13} color="rgba(255,255,255,0.6)" className="absolute left-2.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 placeholder="Search..."
-                className="pl-8 pr-3 py-1 rounded text-[11px] w-36"
-                style={{ background: 'rgba(255,255,255,0.15)', color: 'white', border: 'none', outline: 'none', fontFamily: '"DM Sans", Inter, system-ui, sans-serif' }}
+                className="pl-8 pr-3 py-1 rounded text-[11px] w-32"
+                style={{ background: 'rgba(255,255,255,0.12)', color: 'white', border: 'none', outline: 'none' }}
               />
             </div>
-            <button className="p-2 rounded hover:bg-white/10"><RefreshCw size={14} color="rgba(255,255,255,0.7)" /></button>
-            <button className="p-2 rounded hover:bg-white/10 relative">
-              <Bell size={14} color="rgba(255,255,255,0.7)" />
-              <span className="absolute top-1 right-1 w-2 h-2 rounded-full" style={{ background: '#fbbf24' }} />
+            <button className="p-1.5 rounded hover:bg-white/10"><RefreshCw size={13} color="rgba(255,255,255,0.6)" /></button>
+            <button className="p-1.5 rounded hover:bg-white/10 relative">
+              <Bell size={13} color="rgba(255,255,255,0.6)" />
+              <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full" style={{ background: '#fbbf24' }} />
             </button>
-            <div className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold ml-1" style={{ background: 'rgba(255,255,255,0.2)', color: 'white' }}>JK</div>
+            <div className="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-bold ml-1" style={{ background: 'rgba(255,255,255,0.2)', color: 'white' }}>JK</div>
           </div>
         </div>
       </div>
 
-      {/* Sub-navigation row */}
-      <div className="flex items-center h-9 px-4 gap-4" style={{ background: '#1a1a2e', borderBottom: '1px solid #333346' }}>
+      {/* Sub-navigation row — Brand Hub: 36px, transparent bg, red-tinted bottom border, 12px font, weight 500 */}
+      <div className="flex items-center px-3 gap-5" style={{ height: '36px', borderBottom: '1px solid rgba(200, 16, 46, 0.25)' }}>
         {(subNavItems[activeSection] || []).map((item, i) => (
-          <button key={item} className="text-[11px] transition-colors hover:text-white" style={{ color: i === 0 ? '#f0f0f5' : '#6b6b82', fontFamily: '"DM Sans", Inter, system-ui, sans-serif' }}>
+          <button key={item} className="text-xs font-medium transition-colors hover:text-white" style={{ color: i === 0 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)' }}>
             {item}
           </button>
         ))}
       </div>
 
-      {/* Breadcrumb + status row */}
-      <div className="flex items-center justify-between h-8 px-4" style={{ background: '#141418', borderBottom: '1px solid #222230' }}>
-        <div className="flex items-center gap-1.5 text-[11px]" style={{ fontFamily: '"DM Sans", Inter, system-ui, sans-serif' }}>
-          <span style={{ color: '#6b6b82' }}>Marketing & Guest</span>
-          <ChevronRight size={12} style={{ color: '#6b6b82' }} />
-          <span style={{ color: '#c8102e', fontWeight: 600 }}>Command Center</span>
+      {/* Breadcrumb + status row — Brand Hub: 36px, very slight red tint bg, subtle border */}
+      <div className="flex items-center justify-between px-3" style={{ height: '36px', background: 'rgba(200, 16, 46, 0.03)', borderBottom: '1px solid rgba(255, 255, 255, 0.04)' }}>
+        <div className="flex items-center gap-1.5 text-[13px] font-medium">
+          <span style={{ color: '#888' }}>Marketing & Guest</span>
+          <span style={{ color: '#555' }}>/</span>
+          <span style={{ color: '#c8102e', fontWeight: 600 }}>{sectionBreadcrumb[activeSection] || 'Command Center'}</span>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#10b981' }} />
-            <span className="text-[10px]" style={{ color: '#6b6b82' }}>Live · Updated 2m ago</span>
+            <span className="text-[11px]" style={{ color: '#888' }}>Live · Updated 2m ago</span>
           </div>
-          <span className="text-[10px]" style={{ color: '#6b6b82' }}>Apr 2, 2026</span>
-          <button className="text-[10px] px-2 py-0.5 rounded" style={{ background: '#222230', color: '#a0a0b8', border: '1px solid #333346' }}>CSV</button>
+          <span className="text-[11px]" style={{ color: '#888' }}>Apr 2, 2026</span>
+          <button className="flex items-center gap-1 text-[11px] px-2 py-0.5 rounded" style={{ background: 'rgba(0,0,0,0.3)', color: '#999', border: '1px solid rgba(255,255,255,0.08)' }}>
+            <span style={{ fontSize: '10px' }}>📋</span> CSV
+          </button>
         </div>
       </div>
     </>

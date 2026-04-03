@@ -1,7 +1,7 @@
 import { Brain, Zap, TrendingUp, AlertTriangle, Target, Lightbulb } from 'lucide-react'
 
 function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <div className={`rounded-lg ${className}`} style={{ background: '#222230', border: '1px solid #333346' }}>{children}</div>
+  return <div className={`rounded-lg ${className}`} style={{ background: '#1e1e22', border: '1px solid #2a2a2e' }}>{children}</div>
 }
 
 const insights = [
@@ -48,23 +48,23 @@ export function AIInsights() {
         </div>
         <div>
           <h3 className="text-sm font-semibold" style={{ color: '#f0f0f5' }}>AI Command Brief</h3>
-          <p className="text-[10px]" style={{ color: '#6b6b82' }}>Top-priority insights generated from cross-department analysis</p>
+          <p className="text-[10px]" style={{ color: '#7a7a80' }}>Top-priority insights generated from cross-department analysis</p>
         </div>
         <div className="ml-auto flex items-center gap-1.5">
           <Zap size={12} className="text-amber-500" />
-          <span className="text-[10px] font-medium" style={{ color: '#6b6b82' }}>Updated 2 min ago</span>
+          <span className="text-[10px] font-medium" style={{ color: '#7a7a80' }}>Updated 2 min ago</span>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {insights.map((insight, i) => (
-          <div key={i} className="p-3 rounded-lg border transition-colors" style={{ borderColor: '#333346' }} onMouseEnter={(e) => e.currentTarget.style.borderColor = '#404052'} onMouseLeave={(e) => e.currentTarget.style.borderColor = '#333346'}>
+          <div key={i} className="p-3 rounded-lg border transition-colors" style={{ borderColor: '#2a2a2e' }} onMouseEnter={(e) => e.currentTarget.style.borderColor = '#3a3a3e'} onMouseLeave={(e) => e.currentTarget.style.borderColor = '#2a2a2e'}>
             <div className="flex items-center gap-2 mb-1.5">
               {insight.icon}
               <span className="text-[9px] font-bold px-1.5 py-0.5 rounded" style={{ background: insight.prColor.bg, color: insight.prColor.color }}>{insight.priority}</span>
             </div>
             <h4 className="text-xs font-semibold leading-snug" style={{ color: '#f0f0f5' }}>{insight.title}</h4>
-            <p className="text-[11px] mt-1 leading-relaxed" style={{ color: '#a0a0b8' }}>{insight.detail}</p>
-            <div className="mt-2 pt-2" style={{ borderTop: '1px solid #333346' }}>
+            <p className="text-[11px] mt-1 leading-relaxed" style={{ color: '#a0a0a4' }}>{insight.detail}</p>
+            <div className="mt-2 pt-2" style={{ borderTop: '1px solid #2a2a2e' }}>
               <p className="text-[10px] font-medium" style={{ color: '#c8102e' }}>Action: {insight.action}</p>
             </div>
           </div>
