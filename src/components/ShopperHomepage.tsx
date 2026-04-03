@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from 'react'
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell, BarChart, Bar, ReferenceLine, Area, AreaChart,
-  RadialBarChart, RadialBar
+  PieChart, Pie, Cell, BarChart, Bar, ReferenceLine, Area, AreaChart
 } from 'recharts'
 import { Shield, TrendingUp, TrendingDown, Eye, MessageCircle, AlertTriangle, Star, ChevronRight, Info } from 'lucide-react'
 
@@ -89,6 +88,24 @@ const casesData = [
   { name: 'Urgent', value: 5, color: '#ef4444' },
 ]
 
+// ─── TOP 5 ISSUE TREND DATA ────────────────────────────────────
+const issueTrendKeys = ['Wait Time', 'Order Wrong', 'Fry Quality', 'Cleanliness', 'Staff Attitude']
+const issueTrendColors = ['#ef4444', '#f59e0b', '#6366f1', '#14b8a6', '#f43f5e']
+const issueTrendData = [
+  { month: 'Jan', 'Wait Time': 28, 'Order Wrong': 18, 'Fry Quality': 12, 'Cleanliness': 9, 'Staff Attitude': 7 },
+  { month: 'Feb', 'Wait Time': 26, 'Order Wrong': 17, 'Fry Quality': 14, 'Cleanliness': 8, 'Staff Attitude': 6 },
+  { month: 'Mar', 'Wait Time': 30, 'Order Wrong': 16, 'Fry Quality': 11, 'Cleanliness': 10, 'Staff Attitude': 8 },
+  { month: 'Apr', 'Wait Time': 25, 'Order Wrong': 19, 'Fry Quality': 13, 'Cleanliness': 7, 'Staff Attitude': 5 },
+  { month: 'May', 'Wait Time': 24, 'Order Wrong': 15, 'Fry Quality': 10, 'Cleanliness': 8, 'Staff Attitude': 7 },
+  { month: 'Jun', 'Wait Time': 27, 'Order Wrong': 14, 'Fry Quality': 12, 'Cleanliness': 9, 'Staff Attitude': 6 },
+  { month: 'Jul', 'Wait Time': 22, 'Order Wrong': 16, 'Fry Quality': 9, 'Cleanliness': 7, 'Staff Attitude': 5 },
+  { month: 'Aug', 'Wait Time': 20, 'Order Wrong': 13, 'Fry Quality': 11, 'Cleanliness': 8, 'Staff Attitude': 4 },
+  { month: 'Sep', 'Wait Time': 19, 'Order Wrong': 14, 'Fry Quality': 8, 'Cleanliness': 6, 'Staff Attitude': 5 },
+  { month: 'Oct', 'Wait Time': 21, 'Order Wrong': 12, 'Fry Quality': 10, 'Cleanliness': 7, 'Staff Attitude': 4 },
+  { month: 'Nov', 'Wait Time': 18, 'Order Wrong': 11, 'Fry Quality': 9, 'Cleanliness': 6, 'Staff Attitude': 3 },
+  { month: 'Dec', 'Wait Time': 16, 'Order Wrong': 10, 'Fry Quality': 8, 'Cleanliness': 5, 'Staff Attitude': 3 },
+]
+
 // ─── CATEGORY SCORES ───────────────────────────────────────────
 const categoryScores = [
   { category: 'Greeting & Hospitality', store: 94, company: 86 },
@@ -102,42 +119,80 @@ const categoryScores = [
 
 
 // ─────────────────────────────────────────────────────────────────
-// RADIAL GAUGE — premium replacement for MarketForce's donut
+// DONUT RING — full circle like MarketForce but premium
 // ─────────────────────────────────────────────────────────────────
-function RadialGauge({ value, target, label, sublabel, color }: { value: number; target: number; label: string; sublabel: string; color: string }) {
-  const data = [{ value, fill: color }]
-  const isAboveTarget = value >= target
+function DonutRing({ value, maxVal, label, sublabel, color }: { value: number; maxVal: number; label: string; sublabel: string; color: string }) {
+  const size = 150
+  const stroke = 12
+  const radius = (size - stroke) / 2
+  const circ = 2 * Math.PI * radius
+  const pct = Math.min(value / maxVal, 1)
+  const offset = circ * (1 - pct)
+
   return (
     <div className="flex flex-col items-center">
-      <div style={{ width: 160, height: 130, position: 'relative' }}>
-        <ResponsiveContainer width="100%" height="100%">
-          <RadialBarChart
-            cx="50%" cy="100%"
-            innerRadius="75%"
-            outerRadius="100%"
-            barSize={14}
-            data={data}
-            startAngle={180}
-            endAngle={0}
-          >
-            <RadialBar background={{ fill: 'rgba(255,255,255,0.05)' }} dataKey="value" cornerRadius={10} />
-          </RadialBarChart>
-        </ResponsiveContainer>
-        <div style={{ position: 'absolute', bottom: 8, left: '50%', transform: 'translateX(-50%)', textAlign: 'center' }}>
-          <div style={{ fontSize: 32, fontWeight: 900, color: WHITE, lineHeight: 1 }}>{label}</div>
-          <div style={{ fontSize: 10, color: GRAY, marginTop: 2 }}>{sublabel}</div>
+      <div style={{ width: size, height: size, position: 'relative' }}>
+        <svg width={size} height={size} style={{ transform: 'rotate(-90deg)' }}>
+          {/* Background ring */}
+          <circle cx={size/2} cy={size/2} r={radius} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth={stroke} />
+          {/* Value ring */}
+          <circle cx={size/2} cy={size/2} r={radius} fill="none" stroke={color} strokeWidth={stroke}
+            strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round"
+            style={{ transition: 'stroke-dashoffset 0.8s ease-out', filter: `drop-shadow(0 0 6px ${color}40)` }} />
+        </svg>
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ fontSize: 30, fontWeight: 900, color: WHITE, lineHeight: 1 }}>{label}</div>
+          <div style={{ fontSize: 10, color: GRAY, marginTop: 3 }}>{sublabel}</div>
         </div>
-      </div>
-      <div className="flex items-center gap-2 mt-1">
-        <span style={{ fontSize: 10, color: GRAY }}>Target: {target}</span>
-        <span style={{ fontSize: 10, color: isAboveTarget ? GREEN : '#ef4444', fontWeight: 700 }}>
-          {isAboveTarget ? '+ Above' : '- Below'}
-        </span>
       </div>
     </div>
   )
 }
 
+
+// ─────────────────────────────────────────────────────────────────
+// KPI REPORT CARD — small metric card for the performance grid
+// ─────────────────────────────────────────────────────────────────
+function KPIReportCard({ title, value, unit, target, companyAvg, trend, trendGoodWhenNeg, sparkData, sparkColor }: {
+  title: string; value: string; unit: string; target: number; companyAvg: number; trend: number; trendGoodWhenNeg?: boolean;
+  sparkData: number[]; sparkColor: string;
+}) {
+  const isGood = trendGoodWhenNeg ? trend <= 0 : trend >= 0
+  const aboveTarget = trendGoodWhenNeg ? parseFloat(value) <= target : parseFloat(value) >= target
+  const spark = sparkData.map((v, i) => ({ i, v }))
+
+  return (
+    <Card className="p-4">
+      <div style={{ fontSize: 11, fontWeight: 700, color: GRAY, marginBottom: 8, lineHeight: 1.2 }}>{title}</div>
+      <div className="flex items-end gap-1">
+        <span style={{ fontSize: 28, fontWeight: 900, color: WHITE, lineHeight: 1 }}>{value}</span>
+        {unit && <span style={{ fontSize: 12, color: GRAY, marginBottom: 2 }}>{unit}</span>}
+      </div>
+      <div className="flex items-center gap-2 mt-2">
+        {isGood ? <TrendingUp size={11} style={{ color: GREEN }} /> : <TrendingDown size={11} style={{ color: '#ef4444' }} />}
+        <span style={{ fontSize: 10, fontWeight: 700, color: isGood ? GREEN : '#ef4444' }}>{trend >= 0 ? '+' : ''}{trend}</span>
+        <span style={{ fontSize: 9, color: DIM }}>vs prev</span>
+      </div>
+      <div style={{ height: 32, marginTop: 8 }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={spark}>
+            <defs>
+              <linearGradient id={`spark-${title.replace(/\s/g,'')}`} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={sparkColor} stopOpacity={0.2} />
+                <stop offset="100%" stopColor={sparkColor} stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <Area type="monotone" dataKey="v" stroke={sparkColor} strokeWidth={1.5} fill={`url(#spark-${title.replace(/\s/g,'')})`} dot={false} />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="flex items-center justify-between mt-2" style={{ borderTop: '1px solid rgba(255,255,255,0.04)', paddingTop: 6 }}>
+        <div style={{ fontSize: 9, color: GRAY }}>Target: {target} <span style={{ color: aboveTarget ? GREEN : '#ef4444', fontWeight: 700 }}>{aboveTarget ? '✓' : '✗'}</span></div>
+        <div style={{ fontSize: 9, color: GRAY }}>Co: {companyAvg}</div>
+      </div>
+    </Card>
+  )
+}
 
 // ─────────────────────────────────────────────────────────────────
 // INTERACTIVE SECRET SHOPPER TIMELINE (adapted from Brand Hub SVG)
@@ -339,7 +394,11 @@ export function ShopperHomepage() {
             <span style={{ fontSize: 13, fontWeight: 800, color: WHITE }}>Secret Shops</span>
             <span style={{ fontSize: 10, color: GRAY, marginLeft: 'auto' }}>Current Month to Date</span>
           </div>
-          <RadialGauge value={stats.avg30} target={87.5} label={stats.avg30.toFixed(0)} sublabel={`${stats.total} assignments`} color={RED} />
+          <DonutRing value={stats.avg30} maxVal={100} label={stats.avg30.toFixed(0)} sublabel={`${stats.total} assignments`} color={RED} />
+          <div className="flex items-center justify-center gap-3 mt-2">
+            <span style={{ fontSize: 10, color: GRAY }}>Target: <span style={{ fontWeight: 700, color: WHITE }}>87.5</span></span>
+            <span style={{ fontSize: 10, fontWeight: 700, color: stats.avg30 >= 87.5 ? GREEN : '#ef4444' }}>{stats.avg30 >= 87.5 ? '▲ Above' : '▼ Below'}</span>
+          </div>
           <div className="flex items-center justify-between mt-3 px-2">
             <div className="flex items-center gap-1">
               {stats.trend30 >= 0 ? <TrendingUp size={12} style={{ color: GREEN }} /> : <TrendingDown size={12} style={{ color: '#ef4444' }} />}
@@ -375,7 +434,11 @@ export function ShopperHomepage() {
             <span style={{ fontSize: 13, fontWeight: 800, color: WHITE }}>CSAT Survey (Top Box)</span>
             <span style={{ fontSize: 10, color: GRAY, marginLeft: 'auto' }}>Current Month to Date</span>
           </div>
-          <RadialGauge value={78.4} target={70} label="78.4%" sublabel="+2.1% to previous" color={AMBER} />
+          <DonutRing value={78.4} maxVal={100} label="78.4%" sublabel="+2.1% to previous" color={AMBER} />
+          <div className="flex items-center justify-center gap-3 mt-2">
+            <span style={{ fontSize: 10, color: GRAY }}>Target: <span style={{ fontWeight: 700, color: WHITE }}>70%</span></span>
+            <span style={{ fontSize: 10, fontWeight: 700, color: GREEN }}>▲ Above</span>
+          </div>
           <div className="flex items-center justify-between mt-3 px-2">
             <div className="flex items-center gap-1">
               <TrendingUp size={12} style={{ color: GREEN }} />
@@ -457,7 +520,141 @@ export function ShopperHomepage() {
         </div>
       </Card>
 
-      {/* ──── ROW 2: Score Trend — Your Store vs Company (12 months) ──── */}
+      {/* ──── ROW 2: Performance KPI Grid (matches remaining MarketForce reports) ──── */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Secret Shop Performance */}
+        <KPIReportCard
+          title="Secret Shop Performance"
+          value="89.1"
+          unit=""
+          target={87.5}
+          companyAvg={84.2}
+          trend={+4.9}
+          sparkData={[82,85,88,84,90,87,92,88,86,91,88,89]}
+          sparkColor={RED}
+        />
+        {/* OSAT Performance */}
+        <KPIReportCard
+          title="OSAT Performance"
+          value="81.3"
+          unit="%"
+          target={78}
+          companyAvg={76.8}
+          trend={+2.1}
+          sparkData={[74,76,78,77,80,79,82,80,78,81,79,81]}
+          sparkColor="#6366f1"
+        />
+        {/* CC/100K */}
+        <KPIReportCard
+          title="CC / 100K"
+          value="12.4"
+          unit=""
+          target={15}
+          companyAvg={18.7}
+          trend={-3.2}
+          trendGoodWhenNeg
+          sparkData={[22,20,19,17,16,15,14,14,13,13,12,12]}
+          sparkColor={GREEN}
+        />
+        {/* 8 Minutes or Less */}
+        <KPIReportCard
+          title="8 Minutes or Less"
+          value="91.2"
+          unit="%"
+          target={90}
+          companyAvg={85.4}
+          trend={+1.8}
+          sparkData={[84,86,87,88,89,88,90,91,90,92,91,91]}
+          sparkColor={AMBER}
+        />
+        {/* Likely to Recommend */}
+        <KPIReportCard
+          title="Likely to Recommend"
+          value="86.7"
+          unit="%"
+          target={82}
+          companyAvg={80.1}
+          trend={+3.5}
+          sparkData={[78,79,81,80,83,82,84,85,84,86,85,87]}
+          sparkColor="#8b5cf6"
+        />
+        {/* Avg Hours to Close */}
+        <KPIReportCard
+          title="Avg Hours to Close"
+          value="4.2"
+          unit="hrs"
+          target={6}
+          companyAvg={8.3}
+          trend={-1.1}
+          trendGoodWhenNeg
+          sparkData={[9,8,7,7,6,6,5,5,5,4,4,4]}
+          sparkColor="#14b8a6"
+        />
+        {/* Order Accuracy */}
+        <KPIReportCard
+          title="Order Accuracy"
+          value="96.8"
+          unit="%"
+          target={95}
+          companyAvg={93.2}
+          trend={+0.6}
+          sparkData={[93,94,94,95,95,96,95,96,97,96,97,97]}
+          sparkColor={GREEN}
+        />
+        {/* Problem Experienced */}
+        <KPIReportCard
+          title="Problem Experienced"
+          value="6.1"
+          unit="%"
+          target={8}
+          companyAvg={9.4}
+          trend={-1.3}
+          trendGoodWhenNeg
+          sparkData={[11,10,10,9,8,8,7,7,7,6,6,6]}
+          sparkColor="#f43f5e"
+        />
+      </div>
+
+      {/* ──── Top 5 Issue Trend ──── */}
+      <Card className="p-5">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <div style={{ fontSize: 14, fontWeight: 800, color: WHITE }}>Top 5 Issue Trend</div>
+            <div style={{ fontSize: 10, color: GRAY }}>Most common guest issues — 12 month rolling</div>
+          </div>
+        </div>
+        <div style={{ height: 220 }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={issueTrendData}>
+              <defs>
+                {issueTrendKeys.map((k, i) => (
+                  <linearGradient key={k} id={`issue${i}`} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor={issueTrendColors[i]} stopOpacity={0.15} />
+                    <stop offset="100%" stopColor={issueTrendColors[i]} stopOpacity={0} />
+                  </linearGradient>
+                ))}
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
+              <XAxis dataKey="month" tick={{ fill: GRAY, fontSize: 10 }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fill: GRAY, fontSize: 10 }} axisLine={false} tickLine={false} />
+              <Tooltip content={<CustomTooltip />} />
+              {issueTrendKeys.map((k, i) => (
+                <Area key={k} type="monotone" dataKey={k} stroke={issueTrendColors[i]} strokeWidth={2} fill={`url(#issue${i})`} name={k} dot={false} />
+              ))}
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="flex flex-wrap gap-4 mt-3 pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}>
+          {issueTrendKeys.map((k, i) => (
+            <div key={k} className="flex items-center gap-1.5">
+              <span style={{ width: 8, height: 3, borderRadius: 2, background: issueTrendColors[i], display: 'inline-block' }} />
+              <span style={{ fontSize: 10, color: GRAY }}>{k}</span>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      {/* ──── ROW 3: Score Trend — Your Store vs Company (12 months) ──── */}
       <Card className="p-5">
         <div className="flex items-center justify-between mb-4">
           <div>
