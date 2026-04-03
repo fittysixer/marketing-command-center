@@ -17,7 +17,7 @@ function StatCard({ label, value, subtext, color }: { label: string; value: stri
   )
 }
 
-export function GuestExperience({ compact = false }: { compact?: boolean }) {
+export function GuestExperience({ compact = false, activeSubNav = 0 }: { compact?: boolean; activeSubNav?: number }) {
   const d = guestExperience
   const [sentimentView, setSentimentView] = useState<'themes' | 'loyalty'>('themes')
 

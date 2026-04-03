@@ -11,7 +11,7 @@ function FeatureIcon({ has }: { has: boolean | string }) {
   return <Minus size={14} className="text-amber-400" />
 }
 
-export function PlatformComparison() {
+export function PlatformComparison({ activeSubNav = 0 }: { activeSubNav?: number } = {}) {
   const kfFeatures = platformComparison.filter(f => f.knowledgeForce === true).length
   const ourFeatures = platformComparison.filter(f => f.ourPlatform).length
   const aiFeatures = platformComparison.filter(f => f.aiPowered).length

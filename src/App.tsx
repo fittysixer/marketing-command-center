@@ -28,10 +28,12 @@ function getSectionFromHash(): Section {
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<Section>(getSectionFromHash)
+  const [activeSubNav, setActiveSubNav] = useState(0)
 
   // Update hash when section changes
   const handleSectionChange = useCallback((section: Section) => {
     setActiveSection(section)
+    setActiveSubNav(0) // reset sub-nav when switching sections
     window.location.hash = section
   }, [])
 
@@ -39,6 +41,7 @@ export default function App() {
   useEffect(() => {
     const onHashChange = () => {
       setActiveSection(getSectionFromHash())
+      setActiveSubNav(0)
     }
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
@@ -49,17 +52,17 @@ export default function App() {
       case 'overview':
         return <ShopperHomepage />
       case 'market-force':
-        return <MarketForceAnalysis />
+        return <MarketForceAnalysis activeSubNav={activeSubNav} />
       case 'financials':
-        return <FinancialKPIs />
+        return <FinancialKPIs activeSubNav={activeSubNav} />
       case 'guest-experience':
-        return <GuestExperience />
+        return <GuestExperience activeSubNav={activeSubNav} />
       case 'operations':
-        return <OperationsOverview />
+        return <OperationsOverview activeSubNav={activeSubNav} />
       case 'local-marketing':
-        return <LocalMarketing />
+        return <LocalMarketing activeSubNav={activeSubNav} />
       case 'comparison':
-        return <PlatformComparison />
+        return <PlatformComparison activeSubNav={activeSubNav} />
       default:
         return null
     }
@@ -67,7 +70,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen" style={{ background: '#0a0a0a', fontFamily: '"DM Sans", Inter, system-ui, sans-serif' }}>
-      <TopNav activeSection={activeSection} onSectionChange={handleSectionChange} />
+      <TopNav activeSection={activeSection} onSectionChange={handleSectionChange} activeSubNav={activeSubNav} onSubNavChange={setActiveSubNav} />
       <main className="max-w-[1400px] mx-auto px-6 py-6">
         {renderSection()}
       </main>

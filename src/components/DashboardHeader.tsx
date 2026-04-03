@@ -31,7 +31,7 @@ const sectionBreadcrumb: Record<string, string> = {
   'comparison': 'KF vs. Us',
 }
 
-export function TopNav({ activeSection, onSectionChange }: { activeSection: string; onSectionChange: (s: any) => void }) {
+export function TopNav({ activeSection, onSectionChange, activeSubNav = 0, onSubNavChange }: { activeSection: string; onSectionChange: (s: any) => void; activeSubNav?: number; onSubNavChange?: (i: number) => void }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -147,10 +147,11 @@ export function TopNav({ activeSection, onSectionChange }: { activeSection: stri
           overflowX: 'auto', gap: '4px',
         }}>
           {(subNavItems[activeSection] || []).map((item, i) => {
-            const isActive = i === 0
+            const isActive = i === activeSubNav
             return (
               <button
                 key={item}
+                onClick={() => onSubNavChange?.(i)}
                 style={{
                   padding: '6px 16px', fontSize: '12px',
                   fontWeight: isActive ? 700 : 500,

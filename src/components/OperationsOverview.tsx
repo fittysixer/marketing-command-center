@@ -16,7 +16,7 @@ function StatusDot({ status }: { status: string }) {
   return <span className={`w-2 h-2 rounded-full inline-block ${colors[status] || 'bg-slate-400'}`} />
 }
 
-export function OperationsOverview({ compact = false }: { compact?: boolean }) {
+export function OperationsOverview({ compact = false, activeSubNav = 0 }: { compact?: boolean; activeSubNav?: number }) {
   const d = operationsData
   const sosData = d.speedOfService.trend.map((v, i) => ({
     month: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][i],

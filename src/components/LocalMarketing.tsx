@@ -83,7 +83,7 @@ function MerchandisingGauge({ score }: { score: number }) {
   )
 }
 
-export function LocalMarketing({ compact = false }: { compact?: boolean }) {
+export function LocalMarketing({ compact = false, activeSubNav = 0 }: { compact?: boolean; activeSubNav?: number }) {
   const [selectedStoreId, setSelectedStoreId] = useState(localMarketingStores[0].id)
   const selectedStore = localMarketingStores.find(s => s.id === selectedStoreId) || localMarketingStores[0]
   const d = storeLocalDashboard

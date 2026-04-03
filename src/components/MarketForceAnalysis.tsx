@@ -24,7 +24,7 @@ function SeverityBadge({ severity }: { severity: string }) {
   )
 }
 
-export function MarketForceAnalysis() {
+export function MarketForceAnalysis({ activeSubNav = 0 }: { activeSubNav?: number } = {}) {
   const data = marketForceCasualDining2025
   const rankChangeData = data.rankings.map((r) => ({
     brand: r.brand.length > 12 ? r.brand.slice(0, 12) + '...' : r.brand,

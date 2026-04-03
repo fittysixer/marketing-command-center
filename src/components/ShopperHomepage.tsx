@@ -6,15 +6,27 @@ import {
 import { Shield, TrendingUp, TrendingDown, Eye, MessageCircle, AlertTriangle, Star, ChevronRight, Info } from 'lucide-react'
 
 // ─── CARD ────────────────────────────────────────────────────────
-function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <div className={`rounded-2xl ${className}`} style={{ background: 'rgba(30,30,34,0.85)', border: '1px solid rgba(200,16,46,0.08)', backdropFilter: 'blur(12px)', boxShadow: '0 2px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03)' }}>{children}</div>
+function Card({ children, className = '', accent = false }: { children: React.ReactNode; className?: string; accent?: boolean }) {
+  return (
+    <div className={`rounded-2xl ${className}`} style={{
+      background: 'rgba(32,28,26,0.88)',
+      border: '1px solid rgba(200,16,46,0.18)',
+      backdropFilter: 'blur(12px)',
+      boxShadow: '0 2px 20px rgba(0,0,0,0.35), 0 0 30px rgba(200,16,46,0.04), inset 0 1px 0 rgba(255,255,255,0.04)',
+      ...(accent ? { borderTop: '2px solid rgba(200,16,46,0.5)' } : {}),
+      position: 'relative' as const,
+      overflow: 'hidden' as const,
+    }}>
+      {children}
+    </div>
+  )
 }
 
 // ─── COLORS ──────────────────────────────────────────────────────
 const RED = '#C8102E'
 const GREEN = '#10b981'
 const AMBER = '#f59e0b'
-const GRAY = '#7a7a80'
+const GRAY = '#8a8580'
 const WHITE = '#f0f0f5'
 const DIM = 'rgba(255,255,255,0.25)'
 function scoreColor(s: number) { return s >= 90 ? GREEN : s >= 80 ? AMBER : '#ef4444' }
@@ -134,11 +146,11 @@ function DonutRing({ value, maxVal, label, sublabel, color }: { value: number; m
       <div style={{ width: size, height: size, position: 'relative' }}>
         <svg width={size} height={size} style={{ transform: 'rotate(-90deg)' }}>
           {/* Background ring */}
-          <circle cx={size/2} cy={size/2} r={radius} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth={stroke} />
+          <circle cx={size/2} cy={size/2} r={radius} fill="none" stroke="rgba(200,16,46,0.06)" strokeWidth={stroke} />
           {/* Value ring */}
           <circle cx={size/2} cy={size/2} r={radius} fill="none" stroke={color} strokeWidth={stroke}
             strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round"
-            style={{ transition: 'stroke-dashoffset 0.8s ease-out', filter: `drop-shadow(0 0 6px ${color}40)` }} />
+            style={{ transition: 'stroke-dashoffset 0.8s ease-out', filter: `drop-shadow(0 0 10px ${color}60) drop-shadow(0 0 20px ${color}25)` }} />
         </svg>
         <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ fontSize: 30, fontWeight: 900, color: WHITE, lineHeight: 1 }}>{label}</div>
@@ -306,7 +318,7 @@ function ShopperTimeline({ filter }: { filter: string }) {
 function CustomTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null
   return (
-    <div style={{ background: 'rgba(10,10,10,0.95)', border: '1px solid rgba(200,16,46,0.15)', borderRadius: 10, padding: '8px 12px', backdropFilter: 'blur(8px)' }}>
+    <div style={{ background: 'rgba(10,10,10,0.95)', border: '1px solid rgba(200,16,46,0.25)', borderRadius: 10, padding: '8px 12px', backdropFilter: 'blur(8px)', boxShadow: '0 4px 20px rgba(0,0,0,0.4), 0 0 15px rgba(200,16,46,0.08)' }}>
       <div style={{ fontSize: 11, fontWeight: 700, color: WHITE, marginBottom: 4 }}>{label}</div>
       {payload.map((p: any, i: number) => (
         <div key={i} className="flex items-center gap-2" style={{ fontSize: 11 }}>
@@ -364,18 +376,66 @@ export function ShopperHomepage() {
 
   const totalCases = casesData.reduce((s, d) => s + d.value, 0)
 
+  // ─── CHECKERBOARD CSS (injected once) ────────────────────────
+  const checkerCSS = `
+    .fg-checker-bg {
+      background-image:
+        linear-gradient(45deg, rgba(200,16,46,0.03) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(200,16,46,0.03) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(200,16,46,0.03) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(200,16,46,0.03) 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+    }
+    .fg-section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,16,46,0.25), transparent);
+      margin: 4px 0;
+    }
+  `
+
   // ─── PERFORMANCE TAB ────────────────────────────────────────
   if (activeTab === 'performance') return (
     <div className="space-y-5">
-      {/* Tab Toggle (matches MarketForce) */}
-      <div className="flex justify-center gap-4 mb-2">
-        <button onClick={() => setActiveTab('performance')} style={{ fontSize: 13, fontWeight: 800, color: RED, borderBottom: `2px solid ${RED}`, paddingBottom: 4, background: 'none', border: 'none', cursor: 'pointer' }}>
-          Performance Dashboard
-        </button>
-        <span style={{ color: DIM }}>|</span>
-        <button onClick={() => setActiveTab('trending')} style={{ fontSize: 13, fontWeight: 600, color: GRAY, paddingBottom: 4, background: 'none', border: 'none', cursor: 'pointer' }}>
-          Trending Dashboard
-        </button>
+      <style>{checkerCSS}</style>
+
+      {/* ──── Five Guys Branded Header ──── */}
+      <div className="fg-checker-bg" style={{
+        borderRadius: 16,
+        padding: '16px 20px',
+        border: '1px solid rgba(200,16,46,0.15)',
+        background: 'linear-gradient(135deg, rgba(200,16,46,0.06) 0%, rgba(32,28,26,0.9) 50%, rgba(200,16,46,0.04) 100%)',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        {/* Thin red top-line */}
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: 'linear-gradient(90deg, transparent, #C8102E, transparent)' }} />
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div style={{
+              width: 36, height: 36, borderRadius: 10,
+              background: 'linear-gradient(135deg, rgba(200,16,46,0.25), rgba(200,16,46,0.08))',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              border: '1px solid rgba(200,16,46,0.3)',
+              boxShadow: '0 0 12px rgba(200,16,46,0.15)',
+            }}>
+              <Shield size={18} style={{ color: RED }} />
+            </div>
+            <div>
+              <div style={{ fontSize: 15, fontWeight: 900, color: WHITE, letterSpacing: 0.5 }}>Performance Dashboard</div>
+              <div style={{ fontSize: 10, color: GRAY }}>KnowledgeForce Intelligence — Powered by AI</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <button onClick={() => setActiveTab('performance')} style={{ fontSize: 12, fontWeight: 800, color: RED, borderBottom: `2px solid ${RED}`, paddingBottom: 4, background: 'none', border: 'none', cursor: 'pointer' }}>
+              Performance
+            </button>
+            <span style={{ color: 'rgba(200,16,46,0.2)' }}>|</span>
+            <button onClick={() => setActiveTab('trending')} style={{ fontSize: 12, fontWeight: 600, color: GRAY, paddingBottom: 4, background: 'none', border: 'none', cursor: 'pointer' }}>
+              Trending
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Store Label */}
@@ -388,7 +448,7 @@ export function ShopperHomepage() {
       {/* ──── ROW 1: Three Hero KPI Cards (matches MarketForce layout) ──── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Secret Shops Card */}
-        <Card className="p-5">
+        <Card className="p-5" accent>
           <div className="flex items-center gap-2 mb-3">
             <Shield size={15} style={{ color: RED }} />
             <span style={{ fontSize: 13, fontWeight: 800, color: WHITE }}>Secret Shops</span>
@@ -428,7 +488,7 @@ export function ShopperHomepage() {
         </Card>
 
         {/* CSAT Survey Card */}
-        <Card className="p-5">
+        <Card className="p-5" accent>
           <div className="flex items-center gap-2 mb-3">
             <Star size={15} style={{ color: AMBER }} />
             <span style={{ fontSize: 13, fontWeight: 800, color: WHITE }}>CSAT Survey (Top Box)</span>
@@ -468,7 +528,7 @@ export function ShopperHomepage() {
         </Card>
 
         {/* Total Cases by Level Card */}
-        <Card className="p-5">
+        <Card className="p-5" accent>
           <div className="flex items-center gap-2 mb-3">
             <MessageCircle size={15} style={{ color: '#6366f1' }} />
             <span style={{ fontSize: 13, fontWeight: 800, color: WHITE }}>Total Cases by Level</span>
@@ -504,7 +564,7 @@ export function ShopperHomepage() {
       </div>
 
       {/* ──── AI INSIGHT (what MarketForce can't do) ──── */}
-      <Card className="p-4">
+      <Card className="p-4" accent>
         <div className="flex items-start gap-3">
           <div style={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg, rgba(200,16,46,0.15), rgba(200,16,46,0.05))', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <AlertTriangle size={16} style={{ color: RED }} />
@@ -519,6 +579,9 @@ export function ShopperHomepage() {
           </div>
         </div>
       </Card>
+
+      {/* Section Divider */}
+      <div className="fg-section-divider" />
 
       {/* ──── ROW 2: Performance KPI Grid (matches remaining MarketForce reports) ──── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -615,6 +678,9 @@ export function ShopperHomepage() {
         />
       </div>
 
+      {/* Section Divider */}
+      <div className="fg-section-divider" />
+
       {/* ──── Top 5 Issue Trend ──── */}
       <Card className="p-5">
         <div className="flex items-center justify-between mb-4">
@@ -653,6 +719,9 @@ export function ShopperHomepage() {
           ))}
         </div>
       </Card>
+
+      {/* Section Divider */}
+      <div className="fg-section-divider" />
 
       {/* ──── ROW 3: Score Trend — Your Store vs Company (12 months) ──── */}
       <Card className="p-5">
@@ -807,15 +876,44 @@ export function ShopperHomepage() {
   // ─── TRENDING TAB ───────────────────────────────────────────
   return (
     <div className="space-y-5">
-      {/* Tab Toggle */}
-      <div className="flex justify-center gap-4 mb-2">
-        <button onClick={() => setActiveTab('performance')} style={{ fontSize: 13, fontWeight: 600, color: GRAY, paddingBottom: 4, background: 'none', border: 'none', cursor: 'pointer' }}>
-          Performance Dashboard
-        </button>
-        <span style={{ color: DIM }}>|</span>
-        <button onClick={() => setActiveTab('trending')} style={{ fontSize: 13, fontWeight: 800, color: RED, borderBottom: `2px solid ${RED}`, paddingBottom: 4, background: 'none', border: 'none', cursor: 'pointer' }}>
-          Trending Dashboard
-        </button>
+      <style>{checkerCSS}</style>
+
+      {/* ──── Five Guys Branded Header ──── */}
+      <div className="fg-checker-bg" style={{
+        borderRadius: 16,
+        padding: '16px 20px',
+        border: '1px solid rgba(200,16,46,0.15)',
+        background: 'linear-gradient(135deg, rgba(200,16,46,0.06) 0%, rgba(32,28,26,0.9) 50%, rgba(200,16,46,0.04) 100%)',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: 'linear-gradient(90deg, transparent, #C8102E, transparent)' }} />
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div style={{
+              width: 36, height: 36, borderRadius: 10,
+              background: 'linear-gradient(135deg, rgba(200,16,46,0.25), rgba(200,16,46,0.08))',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              border: '1px solid rgba(200,16,46,0.3)',
+              boxShadow: '0 0 12px rgba(200,16,46,0.15)',
+            }}>
+              <TrendingUp size={18} style={{ color: RED }} />
+            </div>
+            <div>
+              <div style={{ fontSize: 15, fontWeight: 900, color: WHITE, letterSpacing: 0.5 }}>Trending Dashboard</div>
+              <div style={{ fontSize: 10, color: GRAY }}>KnowledgeForce Intelligence — 12 Month Analysis</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <button onClick={() => setActiveTab('performance')} style={{ fontSize: 12, fontWeight: 600, color: GRAY, paddingBottom: 4, background: 'none', border: 'none', cursor: 'pointer' }}>
+              Performance
+            </button>
+            <span style={{ color: 'rgba(200,16,46,0.2)' }}>|</span>
+            <button onClick={() => setActiveTab('trending')} style={{ fontSize: 12, fontWeight: 800, color: RED, borderBottom: `2px solid ${RED}`, paddingBottom: 4, background: 'none', border: 'none', cursor: 'pointer' }}>
+              Trending
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Store Label */}
