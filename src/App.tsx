@@ -7,6 +7,7 @@ import { OperationsOverview } from './components/OperationsOverview'
 import { PlatformComparison } from './components/PlatformComparison'
 import { AIInsights } from './components/AIInsights'
 import { LocalMarketing } from './components/LocalMarketing'
+import { ShopperHomepage } from './components/ShopperHomepage'
 
 export type Section =
   | 'overview'
@@ -46,19 +47,7 @@ export default function App() {
   const renderSection = () => {
     switch (activeSection) {
       case 'overview':
-        return (
-          <div className="space-y-6">
-            <AIInsights />
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-              <FinancialKPIs compact />
-              <GuestExperience compact />
-            </div>
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-              <OperationsOverview compact />
-              <LocalMarketing compact />
-            </div>
-          </div>
-        )
+        return <ShopperHomepage />
       case 'market-force':
         return <MarketForceAnalysis />
       case 'financials':
