@@ -39,7 +39,7 @@ export function TopNav({ activeSection, onSectionChange }: { activeSection: stri
       <HamburgerMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
 
       {/* Main header bar — matches Brand Hub: 44px, #C8102E, borderBottom #A00D24, px-3 */}
-      <div className="sticky top-0 z-30" style={{ background: '#C8102E', width: '100%', boxSizing: 'border-box' }}>
+      <div className="sticky top-0 z-30" style={{ width: '100%', boxSizing: 'border-box' }}>
         {/* ROW 1: Logo + Category tabs — Athletic-style red bar */}
         <div style={{
           background: '#C8102E',
