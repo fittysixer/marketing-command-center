@@ -53,7 +53,7 @@ function MenuIcon({ name, color }: { name: string; color: string }) {
 
 // Store Dashboards — matches Brand Hub food-safety.html sidebar exactly (same order, same items)
 const storeDashboards = [
-  { id: 'foodsafety', label: 'Food Safety', icon: 'shield', active: false, href: 'https://fsagent-modular.vercel.app/food-safety.html' },
+  { id: 'foodsafety', label: 'Food Safety', icon: 'shield', active: false, href: 'https://fsagent-modular.vercel.app/food-safety.html#cc' },
   { id: 'sales', label: 'Sales & Revenue', icon: 'dollar', coming: true },
   { id: 'labor', label: 'Labor & Scheduling', icon: 'users', coming: true },
   { id: 'marketing', label: 'Marketing & Shopper', icon: 'megaphone', active: true },
