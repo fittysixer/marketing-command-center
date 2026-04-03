@@ -58,13 +58,14 @@ export function TopNav({ activeSection, onSectionChange }: { activeSection: stri
             <div style={{ width: '16px', height: '2px', background: '#fff', borderRadius: '1px' }} />
           </div>
 
-          {/* Logo — italic bold like Brand Hub */}
-          <span style={{
-            fontSize: '15px', color: 'white', marginRight: '20px', cursor: 'pointer', flexShrink: 0,
-            fontFamily: '"DM Sans", Inter, system-ui, sans-serif', fontWeight: 900, fontStyle: 'italic', letterSpacing: '0.5px',
-          }}>
-            FIVE GUYS
-          </span>
+          {/* Logo — SVG matching Brand Hub exactly: bold condensed 28px height */}
+          <svg
+            viewBox="0 0 200 40"
+            style={{ height: '28px', marginRight: '20px', cursor: 'pointer', flexShrink: 0 }}
+            onClick={() => { window.location.href = 'https://fsagent-modular.vercel.app/'; }}
+          >
+            <text x="0" y="32" fill="white" fontFamily="'DM Sans', 'Arial Black', 'Helvetica Neue', sans-serif" fontWeight="900" fontSize="36" letterSpacing="2" fontStyle="italic">FIVE GUYS</text>
+          </svg>
 
           {/* Divider line between logo and home button — matches Brand Hub */}
           <div style={{ width: '1px', height: '24px', background: 'rgba(255,255,255,0.2)', marginRight: '0px', flexShrink: 0 }} />

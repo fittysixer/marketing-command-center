@@ -51,14 +51,14 @@ function MenuIcon({ name, color }: { name: string; color: string }) {
   }
 }
 
-// Store Dashboards — matches Brand Hub exactly
+// Store Dashboards — matches Brand Hub food-safety.html sidebar exactly (same order, same items)
 const storeDashboards = [
-  { id: 'foodsafety', label: 'Food Safety', icon: 'shield', active: false, href: 'https://fsagent-modular.vercel.app/' },
-  { id: 'lms', label: 'LMS', icon: 'gradcap', href: 'https://five-guys-university.vercel.app' },
+  { id: 'foodsafety', label: 'Food Safety', icon: 'shield', active: false, href: 'https://fsagent-modular.vercel.app/food-safety.html' },
   { id: 'sales', label: 'Sales & Revenue', icon: 'dollar', coming: true },
   { id: 'labor', label: 'Labor & Scheduling', icon: 'users', coming: true },
   { id: 'marketing', label: 'Marketing & Shopper', icon: 'megaphone', active: true },
-  { id: 'guestexp', label: 'Guest Experience', icon: 'star', coming: true },
+  { id: 'settings', label: 'Store Profile', icon: 'gear', coming: true },
+  { id: 'lms', label: 'LMS', icon: 'gradcap', href: 'https://five-guys-university.vercel.app' },
 ]
 
 // Department Command Centers — matches Brand Hub exactly
@@ -195,7 +195,7 @@ export function HamburgerMenu({ open, onClose }: { open: boolean; onClose: () =>
               background: 'transparent', borderLeft: '3px solid transparent',
               color: 'rgba(255,255,255,0.5)', fontSize: '11px', fontWeight: 600,
               fontFamily: "'DM Sans', sans-serif", textAlign: 'left', width: '100%',
-              transition: 'all 150ms', marginBottom: '12px',
+              transition: 'all 150ms',
             }}
             onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.color = '#fff'; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; }}
@@ -204,6 +204,24 @@ export function HamburgerMenu({ open, onClose }: { open: boolean; onClose: () =>
               <MenuIcon name="home" color="rgba(255,255,255,0.4)" />
             </span>
             <span>Brand Hub Home</span>
+          </button>
+          <button
+            onClick={() => { onClose(); window.location.href = 'https://fsagent-modular.vercel.app/index.html#admincc'; }}
+            style={{
+              display: 'flex', alignItems: 'center', gap: '10px',
+              padding: '10px 16px', border: 'none', cursor: 'pointer',
+              background: 'transparent', borderLeft: '3px solid transparent',
+              color: 'rgba(255,255,255,0.5)', fontSize: '11px', fontWeight: 600,
+              fontFamily: "'DM Sans', sans-serif", textAlign: 'left', width: '100%',
+              transition: 'all 150ms', marginBottom: '12px',
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.color = '#fff'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; }}
+          >
+            <span style={{ width: '22px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <MenuIcon name="gear" color="rgba(255,255,255,0.4)" />
+            </span>
+            <span>Admin</span>
           </button>
         </div>
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { TopNav } from './components/DashboardHeader'
 import { MarketForceAnalysis } from './components/MarketForceAnalysis'
 import { FinancialKPIs } from './components/FinancialKPIs'
@@ -17,8 +17,31 @@ export type Section =
   | 'local-marketing'
   | 'comparison'
 
+const validSections: Section[] = ['overview', 'market-force', 'financials', 'guest-experience', 'operations', 'local-marketing', 'comparison']
+
+function getSectionFromHash(): Section {
+  const hash = window.location.hash.replace('#', '')
+  if (validSections.includes(hash as Section)) return hash as Section
+  return 'overview'
+}
+
 export default function App() {
-  const [activeSection, setActiveSection] = useState<Section>('overview')
+  const [activeSection, setActiveSection] = useState<Section>(getSectionFromHash)
+
+  // Update hash when section changes
+  const handleSectionChange = useCallback((section: Section) => {
+    setActiveSection(section)
+    window.location.hash = section
+  }, [])
+
+  // Listen for browser back/forward buttons
+  useEffect(() => {
+    const onHashChange = () => {
+      setActiveSection(getSectionFromHash())
+    }
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
 
   const renderSection = () => {
     switch (activeSection) {
@@ -55,7 +78,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen" style={{ background: '#0a0a0a', fontFamily: '"DM Sans", Inter, system-ui, sans-serif' }}>
-      <TopNav activeSection={activeSection} onSectionChange={setActiveSection} />
+      <TopNav activeSection={activeSection} onSectionChange={handleSectionChange} />
       <main className="max-w-[1400px] mx-auto px-6 py-6">
         {renderSection()}
       </main>

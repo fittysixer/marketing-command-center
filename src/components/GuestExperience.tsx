@@ -195,6 +195,100 @@ export function GuestExperience({ compact = false }: { compact?: boolean }) {
         </Card>
       </div>
 
+      {/* ═══ AI INSIGHTS: CSAT Scores & Secret Shopper Deep-Dive ═══ */}
+      <Card className="p-4">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <span className="text-base">🔍</span>
+            <h3 className="text-sm font-semibold" style={{ color: '#f0f0f5' }}>AI Insights — CSAT Scores & Secret Shopper Intelligence</h3>
+          </div>
+          <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold" style={{ background: 'rgba(200,16,46,0.15)', color: '#C8102E' }}>KnowledgeForce Can't Do This</span>
+        </div>
+
+        {/* CSAT Score Breakdown */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+          <div className="p-3 rounded-lg" style={{ background: '#232326' }}>
+            <div className="text-[10px] uppercase tracking-wider mb-2" style={{ color: '#7a7a80' }}>CSAT Score Decomposition — AI Pattern Analysis</div>
+            <div className="space-y-2">
+              {[
+                { category: 'Food Quality & Freshness', score: 4.6, trend: '+0.3', color: '#10b981', pct: 92 },
+                { category: 'Order Accuracy', score: 4.4, trend: '+0.1', color: '#10b981', pct: 88 },
+                { category: 'Speed of Service', score: 3.8, trend: '-0.2', color: '#ef4444', pct: 76 },
+                { category: 'Cleanliness', score: 4.2, trend: '+0.2', color: '#10b981', pct: 84 },
+                { category: 'Staff Friendliness', score: 4.5, trend: '+0.4', color: '#10b981', pct: 90 },
+                { category: 'Value for Money', score: 3.6, trend: '-0.1', color: '#f59e0b', pct: 72 },
+              ].map((c) => (
+                <div key={c.category}>
+                  <div className="flex items-center justify-between mb-0.5">
+                    <span className="text-[11px]" style={{ color: '#a0a0a4' }}>{c.category}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[11px] font-bold" style={{ color: '#f0f0f5' }}>{c.score}/5</span>
+                      <span className="text-[10px] font-semibold" style={{ color: c.color }}>{c.trend}</span>
+                    </div>
+                  </div>
+                  <div className="h-1.5 rounded-full overflow-hidden" style={{ background: '#1e1e22' }}>
+                    <div className="h-full rounded-full" style={{ width: `${c.pct}%`, background: c.color }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="p-3 rounded-lg" style={{ background: '#232326' }}>
+            <div className="text-[10px] uppercase tracking-wider mb-2" style={{ color: '#7a7a80' }}>Secret Shopper Report Highlights — Last 90 Days</div>
+            <div className="space-y-2">
+              {[
+                { finding: 'Greeting within 10 seconds', score: '94%', status: 'pass', detail: '↑ 8pts after Q1 training push' },
+                { finding: 'Fry cook called order back', score: '88%', status: 'pass', detail: 'Consistent across all shifts' },
+                { finding: 'Suggestive upsell attempted', score: '42%', status: 'fail', detail: '↓ 15pts — dinner shift weakest' },
+                { finding: 'Condiment bar fully stocked', score: '71%', status: 'warn', detail: 'Fails correlate with rush hours' },
+                { finding: 'Cashier eye contact & smile', score: '82%', status: 'pass', detail: 'Morning crew scores 96%' },
+                { finding: 'Order delivered under 8 min', score: '61%', status: 'fail', detail: '↓ during 11:30–1pm window' },
+              ].map((f) => (
+                <div key={f.finding} className="flex items-center gap-2 p-1.5 rounded" style={{ background: f.status === 'fail' ? 'rgba(239,68,68,0.06)' : f.status === 'warn' ? 'rgba(245,158,11,0.06)' : 'transparent' }}>
+                  <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: f.status === 'pass' ? '#10b981' : f.status === 'warn' ? '#f59e0b' : '#ef4444' }} />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-medium truncate" style={{ color: '#f0f0f5' }}>{f.finding}</span>
+                      <span className="text-[11px] font-bold ml-2 flex-shrink-0" style={{ color: f.status === 'pass' ? '#10b981' : f.status === 'warn' ? '#f59e0b' : '#ef4444' }}>{f.score}</span>
+                    </div>
+                    <div className="text-[9px]" style={{ color: '#7a7a80' }}>{f.detail}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* AI Cross-Analysis Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="p-3 rounded-md border" style={{ background: 'rgba(239,68,68,0.06)', borderColor: 'rgba(239,68,68,0.2)' }}>
+            <div className="flex items-center gap-1 mb-1">
+              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded" style={{ background: 'rgba(239,68,68,0.2)', color: '#ef4444' }}>P0</span>
+              <span className="text-[10px] font-semibold" style={{ color: '#ef4444' }}>Speed × CSAT Correlation</span>
+            </div>
+            <p className="text-[11px]" style={{ color: '#a0a0a4' }}>Secret shoppers report 61% order-under-8min compliance during lunch. CSAT "Speed of Service" dropped to 3.8/5. AI projects fixing lunch staffing adds +0.4 to overall CSAT within 6 weeks.</p>
+            <p className="text-[10px] font-semibold mt-1" style={{ color: '#10b981' }}>+$12,400/mo revenue impact</p>
+          </div>
+          <div className="p-3 rounded-md border" style={{ background: 'rgba(245,158,11,0.06)', borderColor: 'rgba(245,158,11,0.2)' }}>
+            <div className="flex items-center gap-1 mb-1">
+              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded" style={{ background: 'rgba(245,158,11,0.2)', color: '#f59e0b' }}>P1</span>
+              <span className="text-[10px] font-semibold" style={{ color: '#f59e0b' }}>Upsell Gap = Revenue Loss</span>
+            </div>
+            <p className="text-[11px]" style={{ color: '#a0a0a4' }}>Only 42% of secret shoppers received an upsell attempt. CSAT "Value" is lowest at 3.6/5 — but stores with high upsell scores see +18% higher value perception. Training upsell to 80% = $290K annually.</p>
+            <p className="text-[10px] font-semibold mt-1" style={{ color: '#10b981' }}>+$290K/yr opportunity</p>
+          </div>
+          <div className="p-3 rounded-md border" style={{ background: 'rgba(59,130,246,0.06)', borderColor: 'rgba(59,130,246,0.2)' }}>
+            <div className="flex items-center gap-1 mb-1">
+              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded" style={{ background: 'rgba(59,130,246,0.2)', color: '#3b82f6' }}>AI</span>
+              <span className="text-[10px] font-semibold" style={{ color: '#3b82f6' }}>Leading Indicator Discovery</span>
+            </div>
+            <p className="text-[11px]" style={{ color: '#a0a0a4' }}>Secret shopper "greeting" scores predict CSAT movement 3–4 weeks ahead. Stores where greeting dropped below 80% saw CSAT fall an average of 0.5 pts within one month. Currently at 94% — holding strong.</p>
+            <p className="text-[10px] font-semibold mt-1" style={{ color: '#10b981' }}>Early warning system active</p>
+          </div>
+        </div>
+      </Card>
+
       {/* Loyalty deep-dive */}
       <Card className="p-4">
         <h3 className="text-sm font-semibold mb-3" style={{ color: '#f0f0f5' }}>Loyalty Program Intelligence</h3>

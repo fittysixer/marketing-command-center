@@ -1,4 +1,4 @@
-import { Brain, Zap, TrendingUp, AlertTriangle, Target, Lightbulb } from 'lucide-react'
+import { Brain, Zap, TrendingUp, AlertTriangle, Target, Lightbulb, Shield, Star } from 'lucide-react'
 
 function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return <div className={`rounded-lg ${className}`} style={{ background: '#1e1e22', border: '1px solid #2a2a2e' }}>{children}</div>
@@ -37,6 +37,22 @@ const insights = [
     detail: 'AI discovered that "Wait Times" sentiment drops precede NPS declines by 3-4 weeks. Current wait time sentiment at 34% — lowest category.',
     action: 'Proactive staffing adjustment before NPS impact materializes',
   },
+  {
+    icon: <Star size={14} className="text-amber-400" />,
+    priority: 'CSAT',
+    prColor: { bg: 'rgba(200, 16, 46, 0.15)', color: '#C8102E' },
+    title: 'CSAT "Value for Money" at 3.6/5 — lowest category, but fixable',
+    detail: 'Cross-referencing CSAT with secret shopper data: stores with upsell compliance >70% score 4.1/5 on value. Upselling creates perception of personal service, not just higher checks.',
+    action: 'Deploy suggestive selling training + measure CSAT value lift in 30 days',
+  },
+  {
+    icon: <Shield size={14} className="text-purple-500" />,
+    priority: 'SHOP',
+    prColor: { bg: 'rgba(139, 92, 246, 0.15)', color: '#8b5cf6' },
+    title: 'Secret shopper: lunch speed failing at 61% — CSAT confirms the pain',
+    detail: 'Orders delivered under 8 min hit just 61% during 11:30–1pm. CSAT speed score dropped to 3.8/5. AI estimates each 10% improvement in lunch speed adds +0.2 to overall CSAT and $12.4K/mo revenue.',
+    action: 'Add 1 crew member to lunch peak (11am–1:30pm) at underperforming stores',
+  },
 ]
 
 export function AIInsights() {
@@ -55,7 +71,7 @@ export function AIInsights() {
           <span className="text-[10px] font-medium" style={{ color: '#7a7a80' }}>Updated 2 min ago</span>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
         {insights.map((insight, i) => (
           <div key={i} className="p-3 rounded-lg border transition-colors" style={{ borderColor: '#2a2a2e' }} onMouseEnter={(e) => e.currentTarget.style.borderColor = '#3a3a3e'} onMouseLeave={(e) => e.currentTarget.style.borderColor = '#2a2a2e'}>
             <div className="flex items-center gap-2 mb-1.5">
