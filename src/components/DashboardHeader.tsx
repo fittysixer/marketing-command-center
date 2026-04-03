@@ -52,13 +52,13 @@ export function TopNav({ activeSection, onSectionChange }: { activeSection: stri
             FIVE GUYS
           </span>
 
-          {/* Home button — dark rounded square with border, 48x26, matching Brand Hub */}
+          {/* Home button — matches Brand Hub exactly: 32x32, no border, rgba(0,0,0,0.25) bg, 6px radius */}
           <a
             href="https://fsagent-modular.vercel.app/"
-            className="flex items-center justify-center hover:bg-black/25 transition-colors"
-            style={{ background: 'rgba(0,0,0,0.15)', borderRadius: '5px', width: '36px', height: '26px', border: '1px solid rgba(255,255,255,0.2)' }}
+            className="flex items-center justify-center hover:bg-black/30 transition-colors"
+            style={{ background: 'rgba(0,0,0,0.25)', borderRadius: '6px', width: '32px', height: '32px', border: 'none' }}
           >
-            <Home size={14} color="white" />
+            <Home size={16} color="white" />
           </a>
 
           {/* Main tabs */}
@@ -102,10 +102,10 @@ export function TopNav({ activeSection, onSectionChange }: { activeSection: stri
         </div>
       </div>
 
-      {/* Sub-navigation row — Brand Hub: 36px, transparent bg, red-tinted bottom border, 12px font, weight 500 */}
-      <div className="flex items-center px-3 gap-5" style={{ height: '36px', borderBottom: '1px solid rgba(200, 16, 46, 0.25)' }}>
+      {/* Sub-navigation row — Brand Hub exact: 36px, gap 4px, borderTop + borderBottom, muted text colors */}
+      <div className="flex items-center px-3" style={{ height: '36px', gap: '4px', borderTop: '0.9px solid rgba(255,255,255,0.06)', borderBottom: '0.9px solid rgba(200, 16, 46, 0.25)' }}>
         {(subNavItems[activeSection] || []).map((item, i) => (
-          <button key={item} className="text-xs font-medium transition-colors hover:text-white" style={{ color: i === 0 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)' }}>
+          <button key={item} className="text-xs transition-colors hover:text-white" style={{ color: i === 0 ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.55)', fontWeight: 500, letterSpacing: '0.3px', padding: '6px 16px' }}>
             {item}
           </button>
         ))}
