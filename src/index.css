@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --bg-base: #141418;
+  --bg-surface: #1c1c24;
+  --bg-card: #222230;
+  --bg-card-hover: #2a2a3a;
+  --bg-elevated: #2d2d3f;
+  --border: #333346;
+  --border-subtle: #2a2a3c;
+  --text-primary: #f0f0f5;
+  --text-secondary: #a0a0b8;
+  --text-muted: #6b6b82;
+  --accent: #c8102e;
+  --accent-hover: #e0182f;
+  --accent-light: rgba(200, 16, 46, 0.12);
+  --success: #10b981;
+  --success-light: rgba(16, 185, 129, 0.12);
+  --danger: #ef4444;
+  --danger-light: rgba(239, 68, 68, 0.12);
+  --warning: #f59e0b;
+  --warning-light: rgba(245, 158, 11, 0.12);
+  --info: #3b82f6;
+  --info-light: rgba(59, 130, 246, 0.12);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333346; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #444460; }
+
+/* Recharts overrides for dark theme */
+.recharts-cartesian-grid line { stroke: #2a2a3c !important; }
+.recharts-text { fill: #6b6b82 !important; }
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: #222230 !important;
+  border-color: #333346 !important;
+  border-radius: 8px !important;
+  color: #f0f0f5 !important;
+}
+.recharts-tooltip-item { color: #a0a0b8 !important; }
